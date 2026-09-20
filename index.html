@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sherlock  Cybersecurity Student & &amp; Embedded Systems Enthusiast</title>
+<title>Sherlock Cybersecurity Student & &amp; Embedded Systems Enthusiast</title>
 <meta name="description" content="Projects, builds and an in-browser ESP32 web flasher by Sherlock. Flash firmware straight from the browser over USB, nothing uploaded anywhere.">
 <link rel="canonical" href="https://sherlocknots.github.io/">
 
@@ -28,7 +28,7 @@
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#000000">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'; connect-src 'self' https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://raw.githubusercontent.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self' https://api.web3forms.com; connect-src 'self' https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://raw.githubusercontent.com">
 
 <link rel="stylesheet" href="assets/css/styles.css">
 <script src="assets/js/theme-init.js"></script>
@@ -243,7 +243,8 @@
 
   <h2 class="section-title" id="contact">Talk To Me ↓</h2>
   <div class="contact-box">
-    <form id="contactForm" novalidate>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <input type="hidden" name="access_key" value="579c1dff-98c1-48b7-ada0-2be0c3fc5b7d">
       <div class="input-group">
         <label for="senderName"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg> Name</label>
         <input type="text" id="senderName" name="name" placeholder="Enter your name" maxlength="80" autocomplete="name" required>

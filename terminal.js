@@ -1,219 +1,92 @@
-/* Search terminal overlay: a small command palette styled as a terminal.
-   Click the search icon (or press "/") to open it, type one of the listed
-   commands (or click a quick-command pill) and it jumps to that part of the
-   page. Everything is plain text through textContent — nothing here ever
-   touches innerHTML with anything other than a couple of fixed elements
-   built via createElement. */
+document.addEventListener("DOMContentLoaded", function() {
+    const termInput = document.getElementById("term-input");
+    const terminalBody = id("terminal-body");
+    const dynamicOutput = id("dynamic-output");
 
-const GITHUB_URL = 'https://github.com/sherlocknots';
-const INSTAGRAM_URL = 'https://www.instagram.com/sh7eerx?stkn=Zjl4aHJkdjEwZzcx';
+    function id(elementId) {
+        return document.getElementById(elementId);
+    }
 
-const SECTION_COMMANDS = {
-  work: 'work',
-  projects: 'work',
-  flasher: 'flasher',
-  order: 'order',
-  community: 'community',
-  contact: 'contact',
-  about: 'about',
-};
+    // Auto-focus terminal input on clicking anywhere in terminal
+    if (terminalBody) {
+        terminalBody.addEventListener("click", function() {
+            termInput.focus();
+        });
+    }
 
-const HELP_LINES = [
-  'available: work, flasher, order, community, github, instagram, about, contact',
-  'also: help, clear',
-];
+    // Terminal Command Logic
+    termInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            const rawCommand = termInput.value;
+            const command = rawCommand.trim().toLowerCase();
 
-export function initTerminal() {
-  const toggle = document.getElementById('searchToggle');
-  const overlay = document.getElementById('terminalOverlay');
-  if (!toggle || !overlay) return;
+            if (command === "") return;
 
-  const modal = overlay.querySelector('.terminal-modal');
-  const closeBtn = document.getElementById('terminalClose');
-  const input = document.getElementById('terminalInput');
-  const output = document.getElementById('terminalOutput');
-  const quickCmds = overlay.querySelectorAll('.terminal-quickcmds button');
+            // Log command to dynamic terminal history
+            appendCommandLog(rawCommand);
 
-  let lastFocused = null;
+            // Command switch
+            switch (command) {
+                case "help":
+                    appendOutput(`
+                        <div style="color: #c084fc; margin: 6px 0;">Available Commands:</div>
+                        <div> - <b style="color: #fff;">home</b> : Scroll to top / home section</div>
+                        <div> - <b style="color: #fff;">projects</b> : Scroll to projects</div>
+                        <div> - <b style="color: #fff;">contact</b> : Scroll to contact section</div>
+                        <div> - <b style="color: #fff;">whoami</b> : Show author active status</div>
+                        <div> - <b style="color: #fff;">clear</b> : Clear dynamic terminal logs</div>
+                    `);
+                    break;
 
-  function focusableEls() {
-    return [input, ...quickCmds, closeBtn].filter(Boolean);
-  }
+                case "home":
+                    window.location.hash = "#home";
+                    appendOutput("<span style='color: #4ade80;'>Navigating to Home...</span>");
+                    break;
 
-  function open() {
-    lastFocused = document.activeElement;
-    overlay.hidden = false;
-    document.body.style.overflow = 'hidden';
-    /* Next frame, so the "hidden" removal has taken effect and the CSS
-       transition on .show actually runs instead of jumping straight in. */
-    requestAnimationFrame(() => {
-      overlay.classList.add('show');
+                case "projects":
+                    window.location.hash = "#projects";
+                    appendOutput("<span style='color: #4ade80;'>Navigating to Projects...</span>");
+                    break;
+
+                case "contact":
+                    window.location.hash = "#contact";
+                    appendOutput("<span style='color: #4ade80;'>Navigating to Contact...</span>");
+                    break;
+
+                case "whoami":
+                    appendOutput("<span style='color: #c084fc;'>lxveace</span> - Developer, Cyberdeck Enthusiast & Hardware Builder.");
+                    break;
+
+                case "clear":
+                    dynamicOutput.innerHTML = "";
+                    break;
+
+                default:
+                    appendOutput(`<span style="color: #ef4444;">Command not found: "${command}". Type <b style="color: #fff;">help</b> for commands.</span>`);
+                    break;
+            }
+
+            termInput.value = "";
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
     });
-    toggle.setAttribute('aria-expanded', 'true');
-    input.value = '';
-    input.focus();
-  }
 
-  function close() {
-    overlay.classList.remove('show');
-    document.body.style.overflow = '';
-    toggle.setAttribute('aria-expanded', 'false');
-    window.setTimeout(() => {
-      overlay.hidden = true;
-    }, 200);
-    if (lastFocused && typeof lastFocused.focus === 'function') {
-      lastFocused.focus();
-    } else {
-      toggle.focus();
-    }
-  }
-
-  function isOpen() {
-    return !overlay.hidden;
-  }
-
-  function printLine(kind, text) {
-    const p = document.createElement('p');
-    if (kind) p.className = `terminal-line-${kind}`;
-    p.textContent = text;
-    output.appendChild(p);
-    output.scrollTop = output.scrollHeight;
-  }
-
-  function printEcho(cmd) {
-    const p = document.createElement('p');
-    p.className = 'terminal-line-echo';
-
-    const who = document.createElement('span');
-    who.className = 'who';
-    who.textContent = 'lxveace';
-
-    const path = document.createElement('span');
-    path.className = 'path';
-    path.textContent = '@field :~$';
-
-    const typed = document.createElement('span');
-    typed.className = 'typed';
-    typed.textContent = ` ${cmd}`;
-
-    p.append(who, path, typed);
-    output.appendChild(p);
-    output.scrollTop = output.scrollHeight;
-  }
-
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return false;
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return true;
-  }
-
-  function openLink(url) {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }
-
-  function runCommand(raw) {
-    const cmd = raw.trim().toLowerCase();
-    if (!cmd) return;
-
-    printEcho(raw.trim());
-
-    if (cmd === 'clear') {
-      output.textContent = '';
-      return;
+    function appendCommandLog(cmd) {
+        const line = document.createElement("div");
+        line.className = "terminal-line";
+        line.style.marginTop = "8px";
+        line.innerHTML = `<span class="term-user">lxveace</span><span class="term-host">@field</span><span class="term-path"> :~$ </span><span style="color: #fff;">${escapeHtml(cmd)}</span>`;
+        dynamicOutput.appendChild(line);
     }
 
-    if (cmd === 'help') {
-      HELP_LINES.forEach((line) => printLine('info', line));
-      return;
+    function appendOutput(htmlContent) {
+        const outContainer = document.createElement("div");
+        outContainer.style.margin = "6px 0 12px 0";
+        outContainer.innerHTML = htmlContent;
+        dynamicOutput.appendChild(outContainer);
     }
 
-    if (cmd === 'github') {
-      printLine('ok', 'opening github.com/sherlocknots...');
-      openLink(GITHUB_URL);
-      window.setTimeout(close, 350);
-      return;
+    function escapeHtml(text) {
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
-
-    if (cmd === 'instagram') {
-      printLine('ok', 'opening instagram...');
-      openLink(INSTAGRAM_URL);
-      window.setTimeout(close, 350);
-      return;
-    }
-
-    const sectionId = SECTION_COMMANDS[cmd];
-    if (sectionId && scrollToSection(sectionId)) {
-      printLine('ok', `→ jumping to ${sectionId}...`);
-      window.setTimeout(close, 350);
-      return;
-    }
-
-    printLine('err', `command not found: ${cmd}`);
-  }
-
-  toggle.addEventListener('click', () => {
-    if (isOpen()) {
-      close();
-    } else {
-      open();
-    }
-  });
-
-  closeBtn.addEventListener('click', close);
-
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) close();
-  });
-
-  input.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      runCommand(input.value);
-      input.value = '';
-    }
-  });
-
-  quickCmds.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      runCommand(btn.dataset.cmd || btn.textContent);
-      input.focus();
-    });
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (!isOpen()) {
-      /* "/" opens the terminal from anywhere on the page, as long as the
-         person isn't already typing into some other field. */
-      const target = event.target;
-      const typing = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable);
-      if (event.key === '/' && !typing) {
-        event.preventDefault();
-        open();
-      }
-      return;
-    }
-
-    if (event.key === 'Escape') {
-      close();
-      return;
-    }
-
-    if (event.key === 'Tab') {
-      const els = focusableEls();
-      const first = els[0];
-      const last = els[els.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-  });
-
-  if (modal) {
-    modal.addEventListener('click', (event) => event.stopPropagation());
-  }
-}
+});

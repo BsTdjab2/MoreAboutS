@@ -1,0 +1,17 @@
+{
+  "name": "sherlock-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static personal site with an in-browser ESP32 web flasher.",
+  "type": "module",
+  "scripts": {
+    "test": "node tools/hardware.test.mjs && node tools/worker.test.mjs && node tools/check.mjs",
+    "test:worker": "node tools/worker.test.mjs",
+    "test:hardware": "node tools/hardware.test.mjs",
+    "test:pages": "node tools/check.mjs",
+    "serve": "node tools/serve.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -168,56 +168,280 @@
   </div>
   <p class="subtitle">Cyber Security Student | Embedded Systems Enthusiast</p>
 
-  <div class="hero-terminal">
-    <div class="hero-terminal-bar">
-      <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
-      <span class="hero-terminal-barlabel">status.sh</span>
+ <!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Terminal</title>
+    <style>
+        :root {
+            --bg-color: #16161e;
+            --text-main: #c0caf5;
+            --text-muted: #7aa2f7;
+            --prompt-user: #bb9af7;
+            --color-ok: #9ece6a;
+            --color-dev: #e0af68;
+            --color-link: #7dcfff;
+            --border-dim: #3b4261;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0d12;
+            color: var(--text-main);
+            font-family: 'Consolas', 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .terminal-container {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            border-radius: 8px;
+            padding: 24px;
+            overflow-y: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        .terminal-container::-webkit-scrollbar { width: 8px; }
+        .terminal-container::-webkit-scrollbar-track { background: transparent; }
+        .terminal-container::-webkit-scrollbar-thumb { background: #3b4261; border-radius: 4px; }
+
+        .prompt { display: flex; gap: 8px; margin-bottom: 12px; }
+        .prompt-user { color: var(--prompt-user); font-weight: bold; }
+        .prompt-symbol { color: var(--text-muted); }
+
+        .list-item {
+            display: flex;
+            margin-bottom: 12px;
+            padding-right: 20px;
+        }
+        .status {
+            font-weight: bold;
+            width: 50px;
+            flex-shrink: 0;
+        }
+        .status.ok { color: var(--color-ok); }
+        .status.dev { color: var(--color-dev); }
+        
+        .item-name {
+            font-weight: bold;
+            color: white;
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .item-desc {
+            color: #8892b0;
+            flex-grow: 1;
+            text-align: right;
+        }
+
+        .divider {
+            border-top: 1px dashed var(--border-dim);
+            margin: 20px 0;
+        }
+
+        .footer-text {
+            color: #8892b0;
+            margin-bottom: 24px;
+        }
+
+        /* Input Area */
+        .input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        #cmd-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: inherit;
+            font-size: inherit;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        /* Dynamic Output Styles */
+        .cmd-echo { margin: 10px 0; color: white; }
+        .cmd-output { margin-bottom: 20px; color: #a9b1d6; }
+        
+        .clickable-cmd {
+            color: var(--color-link);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: color 0.2s;
+        }
+        .clickable-cmd:hover {
+            color: var(--color-ok);
+        }
+
+        .error-text { color: #f7768e; }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-container" id="terminal" onclick="document.getElementById('cmd-input').focus()">
+        
+        <!-- Initial Boot Sequence (Matches the image) -->
+        <div id="history">
+            <div class="prompt">
+                <span class="prompt-user">Sherlock@Search[~]</span>
+                <span class="prompt-symbol">:~$</span>
+                <span style="color: white;">whoami --active</span>
+            </div>
+            
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">cyber-controller</span>
+                <span class="item-desc">v2.0.0 · flagship, shipping</span>
+            </div>
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">catalyst-ui</span>
+                <span class="item-desc">v4.0.3 · AI workbench, desktop</span>
+            </div>
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">universal-flasher</span>
+                <span class="item-desc">v1.4.0 · firmware flasher</span>
+            </div>
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">headless-marauder-gui</span>
+                <span class="item-desc">v1.3.4 · ESP32 Marauder</span>
+            </div>
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">deadmans-switch</span>
+                <span class="item-desc">ESP32 · hardware-validated</span>
+            </div>
+            <div class="list-item">
+                <span class="status ok">[OK]</span>
+                <span class="item-name">tag-studio</span>
+                <span class="item-desc">free · label & barcode design</span>
+            </div>
+            <div class="list-item">
+                <span class="status dev">[DEV]</span>
+                <span class="item-name">pelican-1300-cyberdeck</span>
+                <span class="item-desc">14-device build, in progress</span>
+            </div>
+
+            <div class="divider"></div>
+            <div class="footer-text">6 shipping · 1 in development · self-taught, built solo</div>
+        </div>
+
+        <!-- Active Input Line -->
+        <div class="input-line" id="active-input-container">
+            <span class="prompt-user">badreddine@safi</span>
+            <span class="prompt-symbol">:~$</span>
+            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
     </div>
-    <div class="hero-terminal-body">
-      <p class="hero-terminal-prompt">
-        <span class="who">lxveace</span><span class="at">@</span>field <span class="path">:~$</span> <span class="cmd">whoami --active</span>
-      </p>
-      <ul class="hero-terminal-list">
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">cyber-controller</span>
-          <span class="proj-meta">v2.0.0 · flagship, shipping</span>
-        </li>
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">catalyst-ui</span>
-          <span class="proj-meta">v4.0.3 · AI workbench, desktop</span>
-        </li>
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">universal-flasher</span>
-          <span class="proj-meta">v1.4.0 · firmware flasher</span>
-        </li>
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">headless-marauder-gui</span>
-          <span class="proj-meta">v1.3.4 · ESP32 Marauder</span>
-        </li>
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">deadmans-switch</span>
-          <span class="proj-meta">ESP32 · hardware-validated</span>
-        </li>
-        <li>
-          <span class="status-badge ok">OK</span>
-          <span class="proj-name">tag-studio</span>
-          <span class="proj-meta">free · label &amp; barcode design</span>
-        </li>
-        <li>
-          <span class="status-badge dev">DEV</span>
-          <span class="proj-name">pelican-1300-cyberdeck</span>
-          <span class="proj-meta">14-device build, in progress</span>
-        </li>
-      </ul>
-      <p class="hero-terminal-footer">6 shipping · 1 in development · self-taught, built solo</p>
-    </div>
-  </div>
-</header>
+
+    <script>
+        const inputField = document.getElementById('cmd-input');
+        const historyDiv = document.getElementById('history');
+        const terminal = document.getElementById('terminal');
+
+        // Function to execute a command (used by Enter key and clickable links)
+        window.executeCommand = function(cmd) {
+            cmd = cmd.trim();
+            if (!cmd) return;
+
+            // 1. Echo the command to the screen
+            const echoHtml = `
+                <div class="prompt cmd-echo">
+                    <span class="prompt-user">Sherlock@Search</span>
+                    <span class="prompt-symbol">:~$</span>
+                    <span>${cmd}</span>
+                </div>
+            `;
+            historyDiv.insertAdjacentHTML('beforeend', echoHtml);
+
+            // 2. Process the command
+            let outputHtml = '';
+            const lowerCmd = cmd.toLowerCase();
+
+            switch(lowerCmd) {
+                case '/help':
+                    outputHtml = `
+                        <div class="cmd-output">
+                            <p style="margin-bottom: 10px;">Available commands (Click to run):</p>
+                            <div>
+                                <span class="clickable-cmd" onclick="executeCommand('work')">work</span> 
+                                - View professional projects and experience
+                            </div>
+                            <div>
+                                <span class="clickable-cmd" onclick="executeCommand('flasher')">flasher</span> 
+                                - Go to the universal firmware flasher tool
+                            </div>
+                            <div>
+                                <span class="clickable-cmd" onclick="executeCommand('community')">community</span> 
+                                - Join our Discord / Community space
+                            </div>
+                            <div>
+                                <span class="clickable-cmd" onclick="executeCommand('clear')">clear</span> 
+                                - Clear the terminal screen
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'work':
+                    outputHtml = `<div class="cmd-output" style="color: var(--color-ok);">>> Redirecting to Work section... (Loading portfolio data)</div>`;
+                    // تقدر تزيد هنا كود باش يديك لشي باج أخرى: window.location.href = '#work';
+                    break;
+                case 'flasher':
+                    outputHtml = `<div class="cmd-output" style="color: var(--color-dev);">>> Initializing Universal Flasher interface...</div>`;
+                    break;
+                case 'community':
+                    outputHtml = `<div class="cmd-output" style="color: var(--prompt-user);">>> Opening Community links... (Discord / GitHub)</div>`;
+                    break;
+                case 'clear':
+                    historyDiv.innerHTML = '';
+                    inputField.value = '';
+                    inputField.focus();
+                    return; // Stop here so we don't print empty output
+                default:
+                    outputHtml = `<div class="cmd-output error-text">bash: ${cmd}: command not found. Type <span class="clickable-cmd" onclick="executeCommand('/help')">/help</span> for available commands.</div>`;
+            }
+
+            // 3. Print Output & Reset Input
+            historyDiv.insertAdjacentHTML('beforeend', outputHtml);
+            inputField.value = '';
+            
+            // 4. Scroll to bottom
+            terminal.scrollTop = terminal.scrollHeight;
+            inputField.focus();
+        };
+
+        // Listen for "Enter" key on the input field
+        inputField.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                executeCommand(this.value);
+            }
+        });
+    </script>
+</body>
+</html>
 
 <main id="main">
   <h2 class="section-title" id="work">Current Work ↓</h2>

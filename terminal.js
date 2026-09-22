@@ -1,92 +1,54 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const termInput = document.getElementById("term-input");
-    const terminalBody = id("terminal-body");
-    const dynamicOutput = id("dynamic-output");
+const termOverlay = document.getElementById('term-overlay');
+const openTermBtn = document.getElementById('open-terminal');
+const closeTermBtn = document.getElementById('close-terminal');
+const termInput = document.getElementById('term-input');
+const termOutput = document.getElementById('term-output');
 
-    function id(elementId) {
-        return document.getElementById(elementId);
-    }
-
-    // Auto-focus terminal input on clicking anywhere in terminal
-    if (terminalBody) {
-        terminalBody.addEventListener("click", function() {
-            termInput.focus();
-        });
-    }
-
-    // Terminal Command Logic
-    termInput.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            const rawCommand = termInput.value;
-            const command = rawCommand.trim().toLowerCase();
-
-            if (command === "") return;
-
-            // Log command to dynamic terminal history
-            appendCommandLog(rawCommand);
-
-            // Command switch
-            switch (command) {
-                case "help":
-                    appendOutput(`
-                        <div style="color: #c084fc; margin: 6px 0;">Available Commands:</div>
-                        <div> - <b style="color: #fff;">home</b> : Scroll to top / home section</div>
-                        <div> - <b style="color: #fff;">projects</b> : Scroll to projects</div>
-                        <div> - <b style="color: #fff;">contact</b> : Scroll to contact section</div>
-                        <div> - <b style="color: #fff;">whoami</b> : Show author active status</div>
-                        <div> - <b style="color: #fff;">clear</b> : Clear dynamic terminal logs</div>
-                    `);
-                    break;
-
-                case "home":
-                    window.location.hash = "#home";
-                    appendOutput("<span style='color: #4ade80;'>Navigating to Home...</span>");
-                    break;
-
-                case "projects":
-                    window.location.hash = "#projects";
-                    appendOutput("<span style='color: #4ade80;'>Navigating to Projects...</span>");
-                    break;
-
-                case "contact":
-                    window.location.hash = "#contact";
-                    appendOutput("<span style='color: #4ade80;'>Navigating to Contact...</span>");
-                    break;
-
-                case "whoami":
-                    appendOutput("<span style='color: #c084fc;'>lxveace</span> - Developer, Cyberdeck Enthusiast & Hardware Builder.");
-                    break;
-
-                case "clear":
-                    dynamicOutput.innerHTML = "";
-                    break;
-
-                default:
-                    appendOutput(`<span style="color: #ef4444;">Command not found: "${command}". Type <b style="color: #fff;">help</b> for commands.</span>`);
-                    break;
-            }
-
-            termInput.value = "";
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-        }
-    });
-
-    function appendCommandLog(cmd) {
-        const line = document.createElement("div");
-        line.className = "terminal-line";
-        line.style.marginTop = "8px";
-        line.innerHTML = `<span class="term-user">lxveace</span><span class="term-host">@field</span><span class="term-path"> :~$ </span><span style="color: #fff;">${escapeHtml(cmd)}</span>`;
-        dynamicOutput.appendChild(line);
-    }
-
-    function appendOutput(htmlContent) {
-        const outContainer = document.createElement("div");
-        outContainer.style.margin = "6px 0 12px 0";
-        outContainer.innerHTML = htmlContent;
-        dynamicOutput.appendChild(outContainer);
-    }
-
-    function escapeHtml(text) {
-        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    }
+// Bach t7el w tsd l'terminal
+openTermBtn.addEventListener('click', () => {
+  termOverlay.classList.add('show');
+  termInput.focus();
 });
+
+closeTermBtn.addEventListener('click', () => {
+  termOverlay.classList.remove('show');
+});
+
+// Bach ykhdmo les commandes mni twrek 3la "Enter"
+termInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    const cmd = this.value.trim();
+    if (cmd) {
+      runCmd(cmd);
+    }
+    this.value = '';
+  }
+});
+
+// L'fonction li katjawb 3la les commandes
+window.runCmd = function(cmd) {
+  // Katkteb l'commande li dkhlti
+  termOutput.innerHTML += `<div class="terminal-line-echo"><span class="terminal-prompt">$</span> <span class="typed">${cmd}</span></div>`;
+
+  let response = '';
+  switch(cmd.toLowerCase()) {
+    case 'whoami':
+      response = '<div class="terminal-line-ok">Badreddine Rguioui - Cybersecurity & Hardware Enthusiast</div>';
+      break;
+    case 'skills':
+      response = '<div class="terminal-line-info">Kali Linux, Nmap, VMware, ESP32 (C++), Unity (C# Modding)</div>';
+      break;
+    case 'clear':
+      termOutput.innerHTML = '';
+      return;
+    case 'help':
+      response = '<div class="terminal-line-info">Available commands: whoami, skills, clear, help</div>';
+      break;
+    default:
+      response = `<div class="terminal-line-err">bash: ${cmd}: command not found</div>`;
+  }
+
+  termOutput.innerHTML += response;
+  // Bach tscroller lta7t automatiquement
+  termOutput.scrollTop = termOutput.scrollHeight;
+};

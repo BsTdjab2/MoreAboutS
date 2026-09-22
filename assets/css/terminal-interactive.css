@@ -1,0 +1,121 @@
+/* Interactive Terminal widget — scoped styles.
+   Custom properties are namespaced under .nt-terminal-container instead of
+   :root so they cannot override the site's existing theme variables
+   (which already define --bg-color, --text-main, etc. at :root). */
+
+.nt-terminal-container {
+    --nt-bg-color: #16161e;
+    --nt-text-main: #c0caf5;
+    --nt-text-muted: #7aa2f7;
+    --nt-prompt-user: #bb9af7;
+    --nt-color-ok: #9ece6a;
+    --nt-color-dev: #e0af68;
+    --nt-color-link: #7dcfff;
+    --nt-border-dim: #3b4261;
+
+    background-color: var(--nt-bg-color);
+    color: var(--nt-text-main);
+    font-family: 'Consolas', 'Courier New', monospace;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding: 24px;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    font-size: 15px;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+.nt-terminal-container *,
+.nt-terminal-container *::before,
+.nt-terminal-container *::after {
+    box-sizing: border-box;
+}
+
+/* Custom Scrollbar */
+.nt-terminal-container::-webkit-scrollbar { width: 8px; }
+.nt-terminal-container::-webkit-scrollbar-track { background: transparent; }
+.nt-terminal-container::-webkit-scrollbar-thumb { background: var(--nt-border-dim); border-radius: 4px; }
+
+.nt-terminal-container .nt-prompt { display: flex; gap: 8px; margin-bottom: 12px; }
+.nt-terminal-container .nt-prompt-user { color: var(--nt-prompt-user); font-weight: bold; }
+.nt-terminal-container .nt-prompt-symbol { color: var(--nt-text-muted); }
+
+.nt-terminal-container .nt-list-item {
+    display: flex;
+    margin-bottom: 12px;
+    padding-right: 20px;
+    flex-wrap: wrap;
+}
+.nt-terminal-container .nt-status {
+    font-weight: bold;
+    width: 50px;
+    flex-shrink: 0;
+}
+.nt-terminal-container .nt-status.nt-ok { color: var(--nt-color-ok); }
+.nt-terminal-container .nt-status.nt-dev { color: var(--nt-color-dev); }
+
+.nt-terminal-container .nt-item-name {
+    font-weight: bold;
+    color: #fff;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.nt-terminal-container .nt-item-desc {
+    color: #8892b0;
+    flex-grow: 1;
+    text-align: right;
+}
+
+.nt-terminal-container .nt-divider {
+    border-top: 1px dashed var(--nt-border-dim);
+    margin: 20px 0;
+}
+
+.nt-terminal-container .nt-footer-text {
+    color: #8892b0;
+    margin-bottom: 24px;
+}
+
+/* Input Area */
+.nt-terminal-container .nt-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.nt-terminal-container #nt-cmd-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+}
+
+/* Dynamic Output Styles */
+.nt-terminal-container .nt-cmd-echo { margin: 10px 0; color: #fff; }
+.nt-terminal-container .nt-cmd-output { margin-bottom: 20px; color: #a9b1d6; }
+
+.nt-terminal-container .nt-clickable-cmd {
+    color: var(--nt-color-link);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+.nt-terminal-container .nt-clickable-cmd:hover {
+    color: var(--nt-color-ok);
+}
+
+.nt-terminal-container .nt-error-text { color: #f7768e; }
+
+.nt-terminal-container .nt-help-title { margin-bottom: 10px; }
+.nt-terminal-container .nt-tone-ok { color: var(--nt-color-ok); }
+.nt-terminal-container .nt-tone-dev { color: var(--nt-color-dev); }
+.nt-terminal-container .nt-tone-user { color: var(--nt-prompt-user); }

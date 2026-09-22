@@ -1,43 +1,23 @@
-// Search Modal & UI interaction script
-document.addEventListener("DOMContentLoaded", function() {
-    const searchBtn = document.getElementById("search-btn");
-    const searchModal = document.getElementById("search-modal");
-    const closeSearch = document.getElementById("close-search");
-    const searchInput = document.getElementById("search-input");
+document.addEventListener("DOMContentLoaded", () => {
+  const progressBar = document.getElementById('sys-progress');
+  const sysConsole = document.getElementById('sys-console');
 
-    // Open Search Modal
-    if (searchBtn && searchModal) {
-        searchBtn.addEventListener("click", function() {
-            searchModal.classList.add("active");
-            setTimeout(() => searchInput.focus(), 100);
-        });
-    }
+  // Animation sghira dyal loading
+  setTimeout(() => {
+    progressBar.style.width = '30%';
+    sysConsole.innerHTML += '<p class="line-muted">Loading network modules...</p>';
+    sysConsole.scrollTop = sysConsole.scrollHeight;
+  }, 500);
 
-    // Close Search Modal
-    if (closeSearch && searchModal) {
-        closeSearch.addEventListener("click", function() {
-            searchModal.classList.remove("active");
-        });
-    }
+  setTimeout(() => {
+    progressBar.style.width = '70%';
+    sysConsole.innerHTML += '<p class="line-muted">Mounting ESP32 storage interfaces...</p>';
+    sysConsole.scrollTop = sysConsole.scrollHeight;
+  }, 1200);
 
-    // Close search on backdrop click
-    window.addEventListener("click", function(event) {
-        if (event.target === searchModal) {
-            searchModal.classList.remove("active");
-        }
-    });
-
-    // Quick Search Input Navigation
-    if (searchInput) {
-        searchInput.addEventListener("keydown", function(e) {
-            if (e.key === "Enter") {
-                const query = searchInput.value.trim().toLowerCase();
-                if (query === "home" || query === "contact" || query === "projects") {
-                    window.location.hash = "#" + query;
-                    searchModal.classList.remove("active");
-                    searchInput.value = "";
-                }
-            }
-        });
-    }
+  setTimeout(() => {
+    progressBar.style.width = '100%';
+    sysConsole.innerHTML += '<p class="line-ok">[OK] All systems operational. Welcome.</p>';
+    sysConsole.scrollTop = sysConsole.scrollHeight;
+  }, 2000);
 });

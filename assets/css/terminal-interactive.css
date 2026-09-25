@@ -1,0 +1,127 @@
+/* Interactive Terminal widget — scoped styles.
+   Custom properties are namespaced under .nt-terminal-container instead of
+   :root so they cannot override the site's existing theme variables
+   (which already define --bg-color, --text-main, etc. at :root).
+
+   --nt-prompt-user and --nt-color-link fall back to the site's own
+   --accent-color (set in assets/css/styles.css, and switched live by the
+   accent-colour picker in the nav) so the terminal's accents move with
+   whatever colour the visitor picks, instead of staying fixed. */
+
+.nt-terminal-container {
+    --nt-bg-color: #16161e;
+    --nt-text-main: #c0caf5;
+    --nt-text-muted: #7aa2f7;
+    --nt-prompt-user: var(--accent-color, #bb9af7);
+    --nt-color-link: var(--accent-color, #7dcfff);
+    --nt-border-dim: #3b4261;
+
+    background-color: var(--nt-bg-color);
+    color: var(--nt-text-main);
+    font-family: 'Consolas', 'Courier New', monospace;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding: 24px;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    font-size: 15px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    transition: transform 0.1s ease-out;
+}
+
+.nt-terminal-container *,
+.nt-terminal-container *::before,
+.nt-terminal-container *::after {
+    box-sizing: border-box;
+}
+
+/* Custom Scrollbar */
+.nt-terminal-container::-webkit-scrollbar { width: 8px; }
+.nt-terminal-container::-webkit-scrollbar-track { background: transparent; }
+.nt-terminal-container::-webkit-scrollbar-thumb { background: var(--nt-border-dim); border-radius: 4px; }
+
+.nt-terminal-container .nt-prompt { display: flex; gap: 8px; margin-bottom: 12px; }
+.nt-terminal-container .nt-prompt-user { color: var(--nt-prompt-user); font-weight: bold; }
+.nt-terminal-container .nt-prompt-symbol { color: var(--nt-text-muted); }
+
+/* "I am ___" line: static label plus the infinite typewriter phrase. */
+.nt-terminal-container .nt-whoami {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+}
+.nt-terminal-container .nt-whoami-static {
+    color: var(--nt-text-main);
+    font-weight: bold;
+}
+.nt-terminal-container .nt-typewriter {
+    color: #00ff00;
+    font-weight: bold;
+    white-space: pre;
+}
+.nt-terminal-container .nt-typewriter::after {
+    content: '_';
+    margin-left: 2px;
+    color: #00ff00;
+    animation: blink-cursor 1s step-end infinite;
+}
+
+.nt-terminal-container .nt-status-line {
+    margin-bottom: 12px;
+    font-size: 0.95em;
+}
+
+/* Input Area */
+.nt-terminal-container .nt-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.nt-terminal-container #nt-cmd-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+}
+
+/* Dynamic Output Styles */
+.nt-terminal-container .nt-cmd-echo { margin: 10px 0; color: #fff; }
+.nt-terminal-container .nt-cmd-output { margin-bottom: 20px; color: #a9b1d6; }
+
+.nt-terminal-container .nt-clickable-cmd {
+    color: var(--nt-color-link);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+.nt-terminal-container .nt-clickable-cmd:hover {
+    color: #00ff00;
+}
+
+.nt-terminal-container .nt-error-text { color: #f7768e; }
+
+.nt-terminal-container .nt-help-title { margin-bottom: 10px; }
+.nt-terminal-container .nt-tone-ok { color: #9ece6a; }
+.nt-terminal-container .nt-tone-dev { color: #e0af68; }
+.nt-terminal-container .nt-tone-user { color: var(--nt-prompt-user); }
+
+/* 3D Mode: JS (mode3d.js) sets the tilt transform inline on pointer move;
+   this just adds perspective and a smooth return to flat when the pointer
+   leaves or 3D Mode is switched off. */
+html[data-mode="3d"] .nt-terminal-container {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+

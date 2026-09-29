@@ -28,10 +28,25 @@
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#000000">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self' https://api.web3forms.com; connect-src 'self' https://api.web3forms.com https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://release-assets.githubusercontent.com https://raw.githubusercontent.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self' https://api.web3forms.com; connect-src 'self' https://api.web3forms.com https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://release-assets.githubusercontent.com https://raw.githubusercontent.com">
 
 <link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/terminal-interactive.css">
+
+<!-- Custom CSS: Ta7yid l-effect ghir mn icons dyal Kali CMD b7dha -->
+<style>
+  .kali-box .icon,
+  .kali-box .kali-header svg,
+  .kali-box .kali-header:active svg,
+  .kali-box .kali-copy-btn .icon,
+  .kali-box .kali-copy-btn:hover .icon,
+  .kali-box .kali-copy-btn:active .icon {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+</style>
+
 <script src="assets/js/theme-init.js"></script>
 
 <script type="application/ld+json">
@@ -295,7 +310,7 @@
       toolchain most of the tools above need before you clone and run them.</p>
   </div>
 
-  <h2 class="section-title" id="kali-cmd">Kali CMD</h2>
+  <h2 class="section-title">Kali CMD</h2>
   <div class="card kali-box">
     <div class="kali-header">
       <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-terminal"></use></svg>
@@ -305,19 +320,19 @@
     <p class="kali-line kali-line-primary"><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code></p>
 
     <div class="kali-line kali-line-copy-wrap">
-      <button type="button" class="kali-copy-btn" id="kaliCopyBtn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
+      <button type="button" class="kali-copy-btn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
         <code>sudo apt install -y git curl python3 python3-pip</code>
         <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-copy"></use></svg>
         <span class="visually-hidden">Click to copy</span>
       </button>
-      <span class="kali-copy-status" id="kaliCopyStatus" role="status" aria-live="polite"></span>
+      <span class="kali-copy-status" role="status" aria-live="polite"></span>
     </div>
 
     <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
       toolchain most of the tools above need before you clone and run them.</p>
   </div>
 
-  <h2 class="section-title" id="kali-cmd">Kali CMD</h2>
+  <h2 class="section-title">Kali CMD</h2>
   <div class="card kali-box">
     <div class="kali-header">
       <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-terminal"></use></svg>
@@ -327,120 +342,17 @@
     <p class="kali-line kali-line-primary"><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code></p>
 
     <div class="kali-line kali-line-copy-wrap">
-      <button type="button" class="kali-copy-btn" id="kaliCopyBtn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
+      <button type="button" class="kali-copy-btn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
         <code>sudo apt install -y git curl python3 python3-pip</code>
         <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-copy"></use></svg>
         <span class="visually-hidden">Click to copy</span>
       </button>
-      <span class="kali-copy-status" id="kaliCopyStatus" role="status" aria-live="polite"></span>
+      <span class="kali-copy-status" role="status" aria-live="polite"></span>
     </div>
 
     <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
-      toolchain most of the tools above need before you clone and run them.</p>
+      toolchain most of the tools.</p>
   </div>
-
-  <h2 class="section-title" id="kali-cmd">Kali CMD</h2>
-  <div class="card kali-box">
-    <div class="kali-header">
-      <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-terminal"></use></svg>
-      <h3 class="kali-title">Kali CMD</h3>
-    </div>
-
-    <p class="kali-line kali-line-primary"><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code></p>
-
-    <div class="kali-line kali-line-copy-wrap">
-      <button type="button" class="kali-copy-btn" id="kaliCopyBtn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
-        <code>sudo apt install -y git curl python3 python3-pip</code>
-        <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-copy"></use></svg>
-        <span class="visually-hidden">Click to copy</span>
-      </button>
-      <span class="kali-copy-status" id="kaliCopyStatus" role="status" aria-live="polite"></span>
-    </div>
-
-    <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
-      toolchain most of the tools above need before you clone and run them.</p>
-  </div>
-
-  <h2 class="section-title" id="kali-cmd">Kali CMD</h2>
-  <div class="card kali-box">
-    <div class="kali-header">
-      <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-terminal"></use></svg>
-      <h3 class="kali-title">Kali CMD</h3>
-    </div>
-
-    <p class="kali-line kali-line-primary"><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code></p>
-
-    <div class="kali-line kali-line-copy-wrap">
-      <button type="button" class="kali-copy-btn" id="kaliCopyBtn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
-        <code>sudo apt install -y git curl python3 python3-pip</code>
-        <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-copy"></use></svg>
-        <span class="visually-hidden">Click to copy</span>
-      </button>
-      <span class="kali-copy-status" id="kaliCopyStatus" role="status" aria-live="polite"></span>
-    </div>
-
-    <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
-      toolchain most of the tools above need before you clone and run them.</p>
-  </div>
-
-  <h2 class="section-title" id="kali-cmd">Kali CMD</h2>
-  <div class="card kali-box">
-    <div class="kali-header">
-      <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-terminal"></use></svg>
-      <h3 class="kali-title">Kali CMD</h3>
-    </div>
-
-    <p class="kali-line kali-line-primary"><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code></p>
-
-    <div class="kali-line kali-line-copy-wrap">
-      <button type="button" class="kali-copy-btn" id="kaliCopyBtn" data-copy-text="sudo apt install -y git curl python3 python3-pip">
-        <code>sudo apt install -y git curl python3 python3-pip</code>
-        <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-copy"></use></svg>
-        <span class="visually-hidden">Click to copy</span>
-      </button>
-      <span class="kali-copy-status" id="kaliCopyStatus" role="status" aria-live="polite"></span>
-    </div>
-
-    <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
-      toolchain most of the tools above need before you clone and run them.</p>
-  </div>
-
-  <h2 class="section-title section-title--accent" id="contact">Contact</h2>
-  <div class="contact-box">
-    <p class="contact-intro">Open to collaboration, consulting, and interesting conversations.</p>
-
-    <div class="contact-links-grid">
-      <a class="contact-link-btn contact-link-discord" href="https://discord.gg/xExgKRD6sB" target="_blank" rel="noopener noreferrer">
-        <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
-        <span>LXVLAB</span>
-      </a>
-      <a class="contact-link-btn contact-link-instagram" href="https://www.instagram.com/sh7eerx?stkn=Zjl4aHJkdjEwZzcx" target="_blank" rel="noopener noreferrer">
-        <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
-        <span>Instagram</span>
-      </a>
-      <a class="contact-link-btn contact-link-github" href="https://github.com/sherlocknots" target="_blank" rel="noopener noreferrer">
-        <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
-        <span>GitHub</span>
-      </a>
-      <a class="contact-link-btn contact-link-mail" href="mailto:test@gmail.com">
-        <svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg>
-        <span>test@gmail.com</span>
-      </a>
-    </div>
-  </div>
-
 </main>
-
-<footer>
-  <div class="footer-links">
-    <a href="disclaimer.html">Disclaimer</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-  </div>
-  <p class="footer-copy">&copy; <span id="year">2026</span> Sherlock. All rights reserved.</p>
-</footer>
-
-<script src="assets/js/main.js" type="module"></script>
-<script src="assets/js/terminal-interactive.js" defer></script>
 </body>
 </html>

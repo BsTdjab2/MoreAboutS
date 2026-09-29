@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sherlock Cybersecurity Student & &amp; Embedded Systems Enthusiast</title>
-<meta name="description" content="Projects, builds and an in-browser ESP32 web flasher by Sherlock. Flash firmware straight from the browser over USB, nothing uploaded anywhere.">
+<meta name="description" content="Projects, builds and an in-browser ESP32 web flasher by Lxve. Flash firmware straight from the browser over USB, nothing uploaded anywhere.">
 <link rel="canonical" href="https://sherlocknots.github.io/">
 
 <meta property="og:type" content="website">
@@ -243,138 +243,11 @@
     </article>
   </div>
 
-  <h2 class="section-title" id="flasher">Web Flasher ↓</h2>
-  <div class="flasher-box">
-    <p class="flasher-subtitle">
-      <svg class="icon" aria-hidden="true"><use href="#i-circle-info"></use></svg>
-      <span>Plug an ESP32 or ESP8266 board into a USB port, pick a firmware and your board (or bring your own .bin), and flash it — no install, no account. Listed firmware is pulled straight from the project's own GitHub release at flash time, and the write happens locally over USB from your browser to the board.</span>
-    </p>
-
-    <div id="serialUnsupported" class="info-box warn" hidden>
-      <svg class="icon" aria-hidden="true"><use href="#i-triangle-exclamation"></use></svg>
-      <span id="serialUnsupportedReason">The flasher needs the Web Serial API, which means desktop Chrome,
-      Edge or Opera. Firefox, Safari and every iOS browser don't support it yet.</span>
-    </div>
-
-    <div class="step-header">
-      <div class="step-num">1</div>
-      <h3 class="step-title"><svg class="icon" aria-hidden="true"><use href="#i-microchip"></use></svg> Pick your chip</h3>
-    </div>
-
-    <label for="chip"><svg class="icon" aria-hidden="true"><use href="#i-server"></use></svg> Chip family</label>
-    <div class="select-wrapper">
-      <select id="chip">
-        <option value="esp32">ESP32 (classic / WROOM)</option>
-        <option value="esp32s3">ESP32-S3</option>
-        <option value="esp32s2">ESP32-S2</option>
-        <option value="esp32c3">ESP32-C3</option>
-        <option value="esp32c6">ESP32-C6</option>
-        <option value="esp8266">ESP8266 / ESP8285</option>
-      </select>
-      <svg class="icon select-caret" aria-hidden="true"><use href="#i-caret-down"></use></svg>
-    </div>
-
-    <label for="firmware"><svg class="icon" aria-hidden="true"><use href="#i-file-code"></use></svg> Firmware</label>
-    <div class="select-wrapper">
-      <select id="firmware">
-        <option value="">Select a firmware...</option>
-      </select>
-      <svg class="icon select-caret" aria-hidden="true"><use href="#i-caret-down"></use></svg>
-    </div>
-    <p class="field-hint" id="firmwareHint">Pick a chip first, then a firmware built for it.</p>
-
-    <div id="buildRow" hidden>
-      <label for="buildSelect"><svg class="icon" aria-hidden="true"><use href="#i-cloud-arrow-up"></use></svg> Build</label>
-      <div class="select-wrapper">
-        <select id="buildSelect">
-          <option value="">Loading builds...</option>
-        </select>
-        <svg class="icon select-caret" aria-hidden="true"><use href="#i-caret-down"></use></svg>
-      </div>
-      <p class="field-hint" id="buildHint">These are the actual files attached to the project's latest
-        release, fetched live. Pick the one that names <strong>your exact board</strong> — a build for a
-        different board will flash without complaining and then not work.</p>
-    </div>
-
-    <details id="byoDetails">
-      <summary><svg class="icon" aria-hidden="true"><use href="#i-cloud-arrow-up"></use></svg> Or bring your own .bin</summary>
-      <label for="binFile" class="visually-hidden">Firmware .bin file</label>
-      <input type="file" id="binFile" accept=".bin,application/octet-stream">
-      <p class="field-hint">
-        Use a merged/full firmware image, flashed at <code>0x0</code>. If you have separate bootloader,
-        partition and app files, merge them first with <code>esptool.py merge_bin</code>. Your file never
-        leaves the browser.
-      </p>
-      <label for="flashOffset">Flash offset</label>
-      <input type="text" id="flashOffset" value="0x0" inputmode="text" spellcheck="false" autocomplete="off">
-    </details>
-
-    <div class="step-header spaced">
-      <div class="step-num">2</div>
-      <h3 class="step-title"><svg class="icon" aria-hidden="true"><use href="#i-bolt"></use></svg> Flash</h3>
-    </div>
-
-    <div class="info-box">
-      <svg class="icon" aria-hidden="true"><use href="#i-lightbulb"></use></svg>
-      <strong>Download mode:</strong> many boards don't auto-enter the bootloader. If it can't connect,
-      <strong>hold BOOT (IO0/FLASH), tap EN/RST once, and keep holding BOOT</strong> until it connects, then release.
-    </div>
-
-    <div class="checkbox-row">
-      <input type="checkbox" id="eraseFlash">
-      <label for="eraseFlash">
-        Erase the whole flash first. Wipes saved settings and Wi-Fi credentials, and takes longer.
-      </label>
-    </div>
-
-    <details>
-      <summary>Advanced</summary>
-      <label for="baud">Baud rate</label>
-      <div class="select-wrapper">
-        <select id="baud">
-          <option value="921600">921600 (fast, default)</option>
-          <option value="460800">460800</option>
-          <option value="230400">230400</option>
-          <option value="115200">115200 (slow, most compatible)</option>
-        </select>
-        <svg class="icon select-caret" aria-hidden="true"><use href="#i-caret-down"></use></svg>
-      </div>
-      <p class="field-hint">Drop to 115200 if the flash keeps failing partway through, or on long/cheap USB cables.</p>
-    </details>
-
-    <div class="btn-row">
-      <button type="button" class="btn-primary btn-secondary" id="connectBtn" disabled>
-        <svg class="icon" aria-hidden="true"><use href="#i-plug"></use></svg> <span>Connect device</span>
-      </button>
-      <button type="button" class="btn-primary" id="flashBtn" disabled>
-        <svg class="icon" aria-hidden="true"><use href="#i-bolt"></use></svg> <span>Flash firmware</span>
-      </button>
-      <button type="button" class="btn-primary btn-secondary" id="disconnectBtn" hidden>
-        <svg class="icon" aria-hidden="true"><use href="#i-eraser"></use></svg> <span>Disconnect</span>
-      </button>
-    </div>
-
-    <div class="progress" id="flashProgress" hidden>
-      <div class="progress-bar" id="flashProgressBar"></div>
-    </div>
-
-    <p class="status-msg" id="flashStatus" role="status" aria-live="polite"></p>
-
-    <div class="console" id="flashConsole" role="log" aria-live="polite" aria-label="Flasher output" tabindex="0">
-      <p class="line-muted">Console output will appear here...</p>
-    </div>
-
-    <noscript>
-      <p class="info-box warn">The web flasher needs JavaScript. With it off, use
-        <a href="https://github.com/espressif/esptool">esptool</a> from a terminal instead.</p>
-    </noscript>
-  </div>
-
   <h2 class="section-title" id="order">Order Links ↓</h2>
   <div class="grid grid-wide">
     <article class="card">
       <h3 class="card-title">Marauder</h3>
-      <p class="card-desc">ESP32 Marauder by justcallmekoko: a WiFi and Bluetooth offensive toolkit for
+      <p class="card-desc">ESP32 Marauder by <span class="wave-text">justcallmekoko</span>.</p>: a WiFi and Bluetooth offensive toolkit for
         ESP32 boards. The official installer page covers the supported hardware and walks you through
         getting a build onto it.</p>
       <a class="card-link" href="https://justcallmekoko.github.io/MarauderInstaller/" target="_blank" rel="noopener noreferrer">
@@ -392,7 +265,7 @@
     <article class="card">
       <h3 class="card-title">ESP32 Marauder</h3>
       <p class="card-desc">A comprehensive suite for ESP32 Wi-Fi &amp; Bluetooth analysis, featuring project
-        details and tools by <span class="wave-text">Sherlock</span>.</p>
+        details and tools by <span class="wave-text">Lxve</span>.</p>
       <a class="card-link" href="https://esp32marauder.com/" target="_blank" rel="noopener noreferrer">
         <svg class="icon" aria-hidden="true"><use href="#i-microchip"></use></svg> Open esp32marauder.com
       </a>
@@ -472,7 +345,7 @@
     <p class="kali-explain">Updates Kali to the latest packages, then installs the git, curl and Python
       toolchain most of the tools above need before you clone and run them.</p>
   </div>
-  
+
   <h2 class="section-title section-title--accent" id="contact">Contact</h2>
   <div class="contact-box">
     <p class="contact-intro">Open to collaboration, consulting, and interesting conversations.</p>

@@ -11,9 +11,6 @@ const INSTAGRAM_URL = 'https://www.instagram.com/sh7eerx?stkn=Zjl4aHJkdjEwZzcx';
 const SECTION_COMMANDS = {
   work: 'work',
   projects: 'work',
-  flasher: 'flasher',
-  order: 'order',
-  community: 'community',
   contact: 'contact',
   about: 'about',
 };

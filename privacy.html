@@ -46,53 +46,36 @@
 
 <main id="main">
   <div class="prose">
-    <p class="updated">Last updated: 18 September 2026</p>
 
-    <h2>The short version</h2>
-    <p>This is a personal site. There are no analytics, no tracking pixels, no advertising, and no
-      cookies. The only information that reaches me is whatever you type into the contact form and
-      choose to send.</p>
+    <h2>Overview</h2>
+    <p>This is a personal, non-commercial website with a strict privacy-first policy: no analytics, no tracking pixels, no advertising frameworks, and no cookies. The only data processed is what you voluntarily submit via the contact form.</p>
 
-    <h2>What the contact form collects</h2>
-    <p>When you send a message, these are submitted: the name you enter, the email address you enter,
-      the message text, and an attachment if you add one. Your IP address is visible to the service
-      that relays the message, and is used only to rate limit abuse. It is not stored alongside the
-      message.</p>
-    <p>Messages are delivered into a private Discord channel that I control, through a relay I run on
-      Cloudflare Workers. Cloudflare and Discord process the data as part of delivering it, under
-      their own privacy policies. Messages stay in that channel until I delete them.</p>
+    <h2>Contact Form Data Collection</h2>
+    <p>When you submit a message, the following information is transmitted: your provided name, email address, message body, and any optional file attachments. Your IP address is temporarily processed by the relay service strictly for rate-limiting and anti-abuse enforcement, and is never stored alongside your message.</p>
+    <p>Messages are routed through a custom Cloudflare Workers relay into a private, secured Discord channel. Cloudflare and Discord process this data during transmission according to their respective privacy policies. Messages remain in this channel until manually purged.</p>
 
-    <h2>What the web flasher collects</h2>
-    <p>Nothing. Firmware you select is downloaded straight to your browser, and a file you choose from
-      your own disk is read in the page. Neither is uploaded anywhere. The write to your board happens
-      locally over USB using the Web Serial API, and the site only has access to the port you
-      explicitly pick in the browser prompt.</p>
+    <h2>Web Flasher & Client-Side Execution</h2>
+    <p>Zero data is collected or uploaded. Selected firmware binaries are downloaded directly within your browser, and local files are read entirely client-side. Hardware flashing occurs locally over USB via the Web Serial API, restricted strictly to the hardware port you explicitly authorize in the browser prompt.</p>
 
-    <h2>Storage on your device</h2>
-    <p>One entry in your browser's local storage records which colour theme you picked, so the site
-      does not flash the wrong one on your next visit. It contains no identifier and never leaves your
-      browser. Clearing site data removes it.</p>
+    <h2>Local Storage</h2>
+    <p>A single entry is stored in your browser's <code>localStorage</code> solely to persist your preferred color theme across visits. It contains no tracking identifiers, never leaves your local browser, and is completely erased if you clear your site data.</p>
 
-    <h2>Third parties</h2>
+    <h2>Third-Party Services</h2>
     <ul>
-      <li>The site itself is served as static files by its host.</li>
-      <li>Contact messages pass through Cloudflare Workers and land in Discord.</li>
-      <li>Firmware downloads, when configured, are fetched from wherever that firmware is published,
-        which may see your IP address as any download would.</li>
+      <li>The site is served strictly as static files from its primary host.</li>
+      <li>Contact messages route securely through Cloudflare Workers and deliver directly to Discord.</li>
+      <li>Firmware downloads, when configured, are fetched directly from their respective publishing repositories (exposing your IP address as any standard web request would).</li>
     </ul>
-    <p>No fonts, scripts, or images are loaded from third-party CDNs. Everything the page needs is
-      served from this domain.</p>
+    <p>No external fonts, third-party scripts, or CDN-hosted assets are embedded. All required resources are self-hosted directly from this domain.</p>
 
-    <h2>Your choices</h2>
-    <p>Do not use the contact form if you would rather not share those details, and reach me on Discord
-      instead. To have a message deleted, ask and I will remove it. There is no account to close and no
-      mailing list to unsubscribe from.</p>
+    <h2>User Control & Rights</h2>
+    <p>If you prefer not to submit details through the web form, you are encouraged to connect directly via Discord. To request the deletion of a previously sent message, contact us and it will be permanently removed. There are no user accounts to manage and no mailing lists to unsubscribe from.</p>
 
-    <h2>Children</h2>
-    <p>This site is not directed at children under 13, and I do not knowingly collect their information.</p>
+    <h2>Children's Privacy</h2>
+    <p>This platform is not directed at children under the age of 13, and we do not knowingly collect or solicit personal information from minors.</p>
 
-    <h2>Changes</h2>
-    <p>If this policy changes, the date at the top changes with it.</p>
+    <h2>Policy Updates</h2>
+    <p>Any modifications to this privacy policy will be reflected by an updated revision date at the top of this page.</p>
   </div>
 </main>
 

@@ -1,0 +1,1437 @@
+/* Sherlock — site styles
+   Dark mode is the default. Light mode is data-theme="light" on <html>. */
+
+:root {
+  --bg-color: #0d0e12;
+  --text-color: #e0e0e0;
+  --accent-color: #00ffcc;
+  --nav-bg: #0a0b0f;
+  --card-bg: #14161d;
+  --border: #23262f;
+  --footer-text: #8d8d8d;
+  --input-bg: #0a0b0f;
+  --field-border: #5c5c5c;
+  --accent-ink: #000000;
+  --well-bg: rgba(0, 0, 0, 0.35);
+  --danger: #ff5c5c;
+  --success: #3ddc84;
+  color-scheme: dark;
+
+}
+
+[data-theme="light"] {
+  --bg-color: #f4f4f4;
+  --text-color: #1a1a1a;
+  --accent-color: #0056b3;
+  --nav-bg: #ffffff;
+  --card-bg: #ffffff;
+  --border: #dcdcdc;
+  --footer-text: #5f5f5f;
+  --input-bg: #ffffff;
+  --field-border: #8a8a8a;
+  --accent-ink: #ffffff;
+  --well-bg: rgba(0, 0, 0, 0.05);
+  --danger: #b3261e;
+  --success: #1c7a45;
+  color-scheme: light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, 'Cascadia Code',
+    'Roboto Mono', Consolas, 'Courier New', Courier, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Component display rules below would otherwise beat the UA rule for [hidden],
+   which is how a "hidden" button ends up on screen. */
+
+[hidden] {
+  display: none !important;
+}
+
+/* Cross-browser consistency (Chrome vs. Edge): both run on Chromium/Blink,
+   so nearly everything already matches pixel-for-pixel. The handful of
+   things that don't come from each browser's own chrome around native form
+   controls rather than from this stylesheet, so they're pinned explicitly
+   here instead of left to whichever default each browser ships. */
+
+/* Text selection colour: otherwise each browser (and OS accent colour)
+   picks its own. */
+
+::selection {
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+}
+
+/* Native checked-state colour for any checkbox, radio, or range input,
+   present or future, beyond the ones already set in .checkbox-row below. */
+
+:root {
+  accent-color: var(--accent-color);
+}
+
+/* Autofill: Chrome and Edge each paint their own highlight colour (a pale
+   yellow or blue) behind an autofilled field unless it's overridden. The
+   inset box-shadow trick swaps it for the site's own input background so
+   neither browser's default shows through. */
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-color);
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  box-shadow: 0 0 0 1000px var(--input-bg) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* The "Choose file" button inside <input type="file"> is drawn by the
+   browser itself; styling it directly keeps it from ever picking up a
+   different look between the two. */
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 6px 12px;
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Page-wide scrollbar: matches the one already used inside the hero
+   terminal, so both browsers show the same bar instead of whichever
+   default (classic or overlay) each one happens to ship. */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--field-border) transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--field-border);
+  border-radius: 5px;
+}
+
+.sprite {
+  display: none;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  flex: none;
+  vertical-align: -0.125em;
+}
+
+/* A few icons (search, globe, close) are simple hand-drawn shapes rather
+   than Font Awesome glyphs, so they render as strokes instead of a filled
+   path. See THIRD-PARTY.md. */
+
+.icon-stroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -110%);
+  z-index: 200;
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  padding: 10px 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 0 0 6px 6px;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* Navbar */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.4s ease;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  padding: 4px 2px;
+}
+
+.nav-links a:hover, .nav-links a:focus-visible {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+.nav-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Header */
+
+header {
+  padding: 80px 50px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  object-fit: cover;
+  transition: transform 0.1s ease;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.logo span {
+  color: var(--accent-color);
+}
+
+/* Main */
+
+main {
+  padding: 0 50px 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  display: inline-block;
+  scroll-margin-top: 90px;
+}
+
+/* Project grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 30px;
+  border-radius: 8px;
+  transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card:hover, .card:focus-within {
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
+}
+
+.card-desc {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Order links reuse .card, but the four cards read as two pairs: Marauder
+   with Bruce, then ESP32 Marauder with Cyber Controller. Fixed at 2 columns
+   rather than auto-fit, so that pairing holds regardless of how wide `main`
+   ever gets — auto-fit would happily lay out 3 across on a wider container
+   and split the second pair across two rows. */
+
+.grid-wide {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 640px) {
+.grid-wide {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.card-link:hover, .card-link:focus-visible {
+  opacity: 0.85;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.card-link:active {
+  transform: scale(0.96);
+}
+
+.card-status {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 12px;
+  opacity: 0.75;
+}
+
+/* Flasher */
+
+.flasher-box, .contact-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 80px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-box {
+  padding: 40px;
+}
+
+/* Whichever section ends up last should not add space on top of main's
+   own bottom padding. Keeps the order of sections free to change. */
+
+main > :last-child {
+  margin-bottom: 0;
+}
+
+.flasher-box:hover, .contact-box:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.flasher-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+}
+
+.flasher-subtitle .icon {
+  margin-top: 0.35em;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.step-header.spaced {
+  margin-top: 40px;
+}
+
+.step-num {
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.8rem;
+  flex: none;
+}
+
+.step-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-title .icon {
+  color: var(--accent-color);
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+label .icon {
+  opacity: 0.9;
+}
+
+select, input[type="file"], input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--field-border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+select, input[type="file"] {
+  cursor: pointer;
+}
+
+select:focus, input[type="file"]:focus, input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: var(--accent-color);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper .select-caret {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+details {
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  min-height: 24px;
+  padding: 3px 0;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:hover {
+  color: var(--accent-color);
+}
+
+details > *:not(summary) {
+  margin-top: 16px;
+}
+
+.info-box {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+  line-height: 1.5;
+  background-color: var(--well-bg);
+  padding: 15px;
+  border-left: 3px solid var(--accent-color);
+  border-radius: 0 6px 6px 0;
+}
+
+.info-box.warn {
+  border-left-color: var(--danger);
+}
+
+/* Kali CMD tool card: icon-left header, two command lines (the second one
+   click-to-copy), then a plain-language explanation. */
+
+.kali-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.kali-header .icon {
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  flex: none;
+}
+
+.kali-title {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.kali-line {
+  display: block;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  background-color: var(--well-bg);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 0 6px 6px 0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.kali-line code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+.kali-line-copy-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.kali-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 12px 14px;
+  background-color: var(--well-bg);
+  border: none;
+  border-left: 3px solid var(--accent-color);
+  border-radius: 0 6px 6px 0;
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.kali-copy-btn code {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  font-family: inherit;
+  white-space: pre;
+}
+
+.kali-copy-btn .icon {
+  flex: none;
+  color: var(--accent-color);
+}
+
+.kali-copy-status {
+  font-size: 0.8rem;
+  color: var(--success);
+  min-width: 70px;
+}
+
+.kali-explain {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.checkbox-row input {
+  width: 24px;
+  height: 24px;
+  margin-top: 0;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+  flex: none;
+}
+
+.checkbox-row label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.progress {
+  margin-top: 20px;
+  height: 10px;
+  background-color: var(--well-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-color);
+  transition: width 0.2s ease;
+}
+
+.console {
+  margin-top: 15px;
+  background-color: var(--well-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  height: 190px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.console p {
+  margin: 0 0 2px;
+}
+
+.console .line-err { color: var(--danger); }
+
+.console .line-ok { color: var(--success); }
+
+.console .line-muted { opacity: 0.65; }
+
+.status-msg {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.status-msg:empty {
+  display: none;
+}
+
+.status-msg .icon {
+  margin-top: 0.3em;
+}
+
+.status-msg.is-error {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.status-msg.is-ok {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+/* Contact */
+
+/* A short coloured bar under a section title, layered on top of the
+   full-width border-bottom every .section-title already has. Used where a
+   title needs to read as a standalone heading (Contact) rather than one in
+   a running list of section headings. */
+
+.section-title--accent {
+  position: relative;
+  border-bottom-color: transparent;
+  padding-bottom: 14px;
+}
+
+.section-title--accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 46px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 999px;
+}
+
+.contact-intro {
+  font-size: 0.98rem;
+  opacity: 0.85;
+  margin: -14px 0 26px;
+}
+
+.contact-form-heading {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.65;
+  padding-top: 26px;
+  margin-bottom: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  margin-top: 0;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 0.75rem;
+  opacity: 0.65;
+  margin-top: 6px;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Prose pages */
+
+.prose {
+  margin-bottom: 60px;
+}
+
+.prose h2 {
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 40px 0 14px;
+  color: var(--accent-color);
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose p, .prose li {
+  margin-bottom: 14px;
+  opacity: 0.92;
+}
+
+.prose ul, .prose ol {
+  padding-left: 22px;
+  margin-bottom: 20px;
+}
+
+.prose a {
+  color: var(--accent-color);
+}
+
+.updated {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+.error-page {
+  text-align: center;
+  padding: 60px 0 100px;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  line-height: 1;
+}
+
+
+/* Responsive */
+
+@media (max-width: 860px) {
+nav {
+    padding: 16px 20px;
+  }
+
+.nav-links {
+    gap: 16px;
+    row-gap: 10px;
+  }
+
+header {
+    padding: 50px 20px 30px;
+  }
+
+main {
+    padding: 0 20px 60px;
+  }
+
+.logo {
+    font-size: 2.2rem;
+  }
+
+.flasher-box, .contact-box {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+.nav-links {
+    gap: 12px;
+    font-size: 13px;
+  }
+
+.nav-links a {
+    font-size: 12px;
+  }
+
+.logo {
+    font-size: 1.9rem;
+  }
+
+.logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+.card {
+    padding: 22px;
+  }
+
+.error-code {
+    font-size: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+html {
+    scroll-behavior: auto;
+  }
+
+*, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+.card {
+    transform: none !important;
+  }
+}
+
+@media print {
+nav, .flasher-box, .skip-link {
+    display: none;
+  }
+
+body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* ===================================================================
+   Animated wave gradient for brand text
+   =================================================================== */
+
+/* The colour is guarded behind @supports: where background-clip: text is not
+   available the text keeps a normal accent colour rather than vanishing. */
+
+.wave-text {
+  position: relative;
+  display: inline-block;
+  color: var(--accent-color);
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .wave-text {
+    background-image: linear-gradient(
+      100deg,
+      var(--accent-color) 0%,
+      var(--text-color) 18%,
+      var(--accent-color) 36%,
+      #7b6bff 54%,
+      var(--accent-color) 72%,
+      var(--text-color) 88%,
+      var(--accent-color) 100%
+    );
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: wave-shift 6s linear infinite;
+  }
+}
+
+@keyframes wave-shift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -300% 50%; }
+}
+
+
+
+/* ===================================================================
+   Scroll progress bar
+   =================================================================== */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 400;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+
+/* ===================================================================
+   Theme toggle (sun icon)
+   =================================================================== */
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  color: var(--accent-color);
+}
+
+/* ===================================================================
+   Hero
+   =================================================================== */
+
+.hero-text {
+  min-width: 0;
+}
+
+.hero-text .logo {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.hero-text .subtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  max-width: 34ch;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ===================================================================
+   Card badge (S1)
+   =================================================================== */
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.card-title-row .card-title {
+  margin-bottom: 0;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: var(--accent-color);
+}
+
+.card-soon {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+/* ===================================================================
+   Kali CMD: completely static (no hover, focus-lift or movement)
+   =================================================================== */
+
+.kali-box,
+.kali-box:hover,
+.kali-box:focus-within {
+  transform: none !important;
+  box-shadow: none;
+  border-color: var(--border);
+  transition: none;
+}
+
+.kali-box *,
+.kali-box *:hover,
+.kali-box *:active {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+/* ===================================================================
+   Contact
+   =================================================================== */
+
+.contact-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.contact-link-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 18px;
+  background-color: var(--well-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.15s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-link-btn .icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: none;
+  transition: color 0.2s ease;
+}
+
+.contact-link-btn span:not(.discord-tooltip) {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-link-btn:hover,
+.contact-link-btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.contact-link-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* GitHub: unchanged from before (border and shadow only, no colour change) */
+.contact-link-github:hover,
+.contact-link-github:focus-visible {
+  border-color: var(--text-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-link-mail:hover,
+.contact-link-mail:focus-visible {
+  border-color: var(--success);
+  color: var(--success);
+  box-shadow: 0 8px 20px rgba(61, 220, 132, 0.15);
+}
+
+/* Instagram: red on hover (icon and text) */
+.contact-link-instagram:hover,
+.contact-link-instagram:focus-visible,
+.footer-nav a.footer-instagram:hover,
+.footer-nav a.footer-instagram:focus-visible,
+.nav-links a.nav-instagram:hover,
+.nav-links a.nav-instagram:focus-visible {
+  color: #ff2b2b;
+  text-shadow: none;
+}
+
+.contact-link-instagram:hover,
+.contact-link-instagram:focus-visible {
+  border-color: #ff2b2b;
+  box-shadow: 0 8px 20px rgba(255, 43, 43, 0.2);
+}
+
+/* LXV Lab (Discord): icon only, violet-to-pink glow and a tooltip on hover */
+.contact-link-discord:hover,
+.contact-link-discord:focus-visible {
+  border-color: #c04cff;
+  color: #d56bff;
+  box-shadow: 0 0 0 1px rgba(192, 76, 255, 0.35), 0 10px 28px rgba(192, 76, 255, 0.35);
+}
+
+.discord-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #5865f2, #c04cff);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.discord-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: #c04cff;
+}
+
+.contact-link-discord:hover .discord-tooltip,
+.contact-link-discord:focus-visible .discord-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+
+footer {
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--border);
+  padding: 40px 50px 24px;
+  transition: background-color 0.4s ease;
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-about {
+  max-width: 380px;
+}
+
+.footer-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.footer-desc {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--footer-text);
+}
+
+.footer-nav,
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  justify-content: flex-end;
+}
+
+.footer-nav {
+  flex: 1 1 280px;
+  text-align: right;
+}
+
+.footer-nav a,
+.footer-legal a {
+  color: var(--footer-text);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible,
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: var(--text-color);
+}
+
+.footer-rule {
+  border: 0;
+  border-top: 1px solid var(--border);
+  opacity: 0.7;
+  margin: 28px 0 18px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  color: var(--footer-text);
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  footer {
+    padding: 32px 20px 20px;
+  }
+
+  .hero-text .logo {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-main,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+}
+
+/* Button link used on the 404 page */
+.discord-btn {
+  background-color: var(--accent-color);
+  color: var(--accent-ink);
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.discord-btn:hover,
+.discord-btn:focus-visible {
+  opacity: 0.85;
+}

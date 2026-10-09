@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="MailAccess">
-  <rect width="64" height="64" rx="14" fill="#0b0b12"/>
-  <rect x="11" y="17" width="42" height="30" rx="5" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-  <path d="M13 21l19 15 19-15" fill="none" stroke="#ececf2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <g>
-    <rect x="38" y="38" width="16" height="12" rx="2.5" fill="#0b0b12" stroke="#ececf2" stroke-width="2.5"/>
-    <path d="M42 38v-3.5a4 4 0 0 1 8 0V38" fill="none" stroke="#ececf2" stroke-width="2.5" stroke-linecap="round"/>
-  </g>
-</svg>

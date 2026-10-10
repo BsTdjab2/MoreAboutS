@@ -120,7 +120,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto mb-10 font-mono">
                 <div class="bg-black/40 border border-cyber-border rounded-xl p-4 flex flex-col items-center justify-center">
-                    <span class="text-xs text-gray-500 uppercase tracking-wider mb-1">Local Time (Morocco)</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider mb-1"> Time</span>
                     <span id="live-clock" class="text-xl md:text-2xl font-bold text-cyan-400 glow-text-cyan">00:00:00</span>
                 </div>
                 <div class="bg-black/40 border border-cyber-border rounded-xl p-4 flex flex-col items-center justify-center">
@@ -155,7 +155,6 @@
         function updateClock() {
             const now = new Date();
             
-            // Format time for Morocco (Africa/Casablanca / GMT+1 or DST)
             const optionsTime = { 
                 timeZone: 'Africa/Casablanca', 
                 hour: '2-digit', 

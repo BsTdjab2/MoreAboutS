@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kali Tools | Sherlock</title>
+<meta name="description" content="A searchable directory of Kali Linux security tools, organized by category, for educational reference.">
+<link rel="canonical" href="https://sherlocknots.github.io/kali-tools.html">
+<meta name="theme-color" content="#050608">
+<link rel="icon" href="data:,">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'; connect-src 'self'">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/theme-init.js"></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false"><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol></svg>
+
+<progress class="scroll-progress" id="scrollProgress" max="100" value="0" aria-hidden="true"></progress>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html#about">Sherlock</a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Projects</a>
+      <a href="kali-tools.html" aria-current="page">Kali Tools</a>
+      <a href="index.html#showcase">Showcase</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Switch to light mode">
+      <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-sun"></use></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Kali Tools</h1>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <h2 class="tool-search-title">Sherlock Search Tools</h2>
+  <div class="tool-search-wrap">
+    <svg class="icon icon-stroke tool-search-icon" aria-hidden="true"><use href="#i-search"></use></svg>
+    <input type="search" id="toolSearch" class="tool-search" placeholder="Search tools, e.g. Sherlock" autocomplete="off" aria-label="Search Kali tools">
+    <button type="button" class="tool-search-clear" id="toolSearchClear" aria-label="Clear search" hidden>
+      <svg class="icon icon-stroke" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+  </div>
+  <p class="tool-search-hint">Press Enter to jump straight to a tool. Click any tool card for its install command and usage example.</p>
+  <p class="tool-search-empty" id="toolSearchEmpty" hidden>No tools match your search.</p>
+
+  <section class="section tool-category" id="cat-info-gathering">
+    <h2 class="section-title">Information Gathering</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Nmap" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-nmap">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🛰️</span><h3 class="card-title">Nmap</h3></div>
+        <p class="card-desc">Maps hosts, open ports and services across a network.</p>
+        <div class="tool-card-detail" id="detail-nmap" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install nmap</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">nmap -sV -T4 192.168.1.0/24</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="theHarvester" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-theharvester">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🌾</span><h3 class="card-title">theHarvester</h3></div>
+        <p class="card-desc">Collects emails, subdomains and names from public sources.</p>
+        <div class="tool-card-detail" id="detail-theharvester" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install theharvester</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">theHarvester -d example.com -b all</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Recon-ng" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-recon-ng">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🕵️</span><h3 class="card-title">Recon-ng</h3></div>
+        <p class="card-desc">Modular web reconnaissance framework for gathering open-source data.</p>
+        <div class="tool-card-detail" id="detail-recon-ng" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install recon-ng</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">recon-ng -w myworkspace</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Sherlock" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-sherlock">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🔎</span><h3 class="card-title">Sherlock</h3></div>
+        <p class="card-desc">Finds active usernames across hundreds of social platforms.</p>
+        <div class="tool-card-detail" id="detail-sherlock" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">pipx install sherlock-project</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sherlock johndoe123</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Maltego" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-maltego">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🕸️</span><h3 class="card-title">Maltego</h3></div>
+        <p class="card-desc">Visual link-analysis tool for mapping OSINT investigations.</p>
+        <div class="tool-card-detail" id="detail-maltego" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install maltego</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">maltego   # launch the GUI, sign in, start a new graph</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Amass" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-amass">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🌐</span><h3 class="card-title">Amass</h3></div>
+        <p class="card-desc">Enumerates subdomains and maps a target's external attack surface.</p>
+        <div class="tool-card-detail" id="detail-amass" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install amass</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">amass enum -d example.com</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="SpiderFoot" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-spiderfoot">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🕷️</span><h3 class="card-title">SpiderFoot</h3></div>
+        <p class="card-desc">Automates OSINT collection across 200+ public data sources.</p>
+        <div class="tool-card-detail" id="detail-spiderfoot" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install spiderfoot</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">spiderfoot -s example.com -l 127.0.0.1:5001</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="DNSrecon" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-dnsrecon">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧬</span><h3 class="card-title">DNSrecon</h3></div>
+        <p class="card-desc">Enumerates DNS records, zone transfers and subdomains.</p>
+        <div class="tool-card-detail" id="detail-dnsrecon" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install dnsrecon</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">dnsrecon -d example.com -t std</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-vulnerability-analysis">
+    <h2 class="section-title">Vulnerability Analysis</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Nikto" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-nikto">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🩺</span><h3 class="card-title">Nikto</h3></div>
+        <p class="card-desc">Scans web servers for dangerous files and misconfigurations.</p>
+        <div class="tool-card-detail" id="detail-nikto" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install nikto</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">nikto -h https://example.com</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Nuclei" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-nuclei">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">⚡</span><h3 class="card-title">Nuclei</h3></div>
+        <p class="card-desc">Fast, template-based vulnerability scanner for known CVEs and misconfigurations.</p>
+        <div class="tool-card-detail" id="detail-nuclei" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install nuclei</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">nuclei -u https://example.com -t cves/</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="OpenVAS" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-openvas">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🛡️</span><h3 class="card-title">OpenVAS</h3></div>
+        <p class="card-desc">Full-featured vulnerability assessment and management suite.</p>
+        <div class="tool-card-detail" id="detail-openvas" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install openvas &amp;&amp; sudo gvm-setup</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">gvm-start   # then open the web UI to run a scan</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Legion" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-legion">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧭</span><h3 class="card-title">Legion</h3></div>
+        <p class="card-desc">Automated, GUI-driven network penetration-testing scanner.</p>
+        <div class="tool-card-detail" id="detail-legion" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install legion</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">legion   # launch the GUI, add a host to begin scanning</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Lynis" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-lynis">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧪</span><h3 class="card-title">Lynis</h3></div>
+        <p class="card-desc">Audits Linux and Unix hosts for hardening and compliance gaps.</p>
+        <div class="tool-card-detail" id="detail-lynis" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install lynis</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo lynis audit system</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Nessus" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-nessus">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🩻</span><h3 class="card-title">Nessus</h3></div>
+        <p class="card-desc">Commercial-grade scanner for vulnerabilities, misconfigurations and missing patches.</p>
+        <div class="tool-card-detail" id="detail-nessus" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">Download the .deb from tenable.com, then sudo dpkg -i Nessus-*.deb</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo systemctl start nessusd   # then open https://localhost:8834</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-web-application">
+    <h2 class="section-title">Web Application Analysis</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Burp Suite" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-burp-suite">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧰</span><h3 class="card-title">Burp Suite</h3></div>
+        <p class="card-desc">Intercepting proxy and toolkit for testing web applications.</p>
+        <div class="tool-card-detail" id="detail-burp-suite" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install burpsuite</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">burpsuite   # launch, then set the browser proxy to 127.0.0.1:8080</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="OWASP ZAP" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-owasp-zap">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🕷️</span><h3 class="card-title">OWASP ZAP</h3></div>
+        <p class="card-desc">Open-source scanner for finding web application vulnerabilities.</p>
+        <div class="tool-card-detail" id="detail-owasp-zap" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install zaproxy</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">zaproxy -cmd -quickurl https://example.com</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="SQLmap" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-sqlmap">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">💉</span><h3 class="card-title">SQLmap</h3></div>
+        <p class="card-desc">Automates detecting and exploiting SQL injection flaws.</p>
+        <div class="tool-card-detail" id="detail-sqlmap" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install sqlmap</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sqlmap -u "https://example.com/item?id=1" --batch</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Gobuster" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-gobuster">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🚪</span><h3 class="card-title">Gobuster</h3></div>
+        <p class="card-desc">Brute-forces directories, files and DNS subdomains.</p>
+        <div class="tool-card-detail" id="detail-gobuster" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install gobuster</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="WPScan" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-wpscan">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧩</span><h3 class="card-title">WPScan</h3></div>
+        <p class="card-desc">Scans WordPress sites for vulnerable plugins and themes.</p>
+        <div class="tool-card-detail" id="detail-wpscan" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install wpscan</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">wpscan --url https://example.com --enumerate vp</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="ffuf" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-ffuf">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧨</span><h3 class="card-title">ffuf</h3></div>
+        <p class="card-desc">Fast, flexible web fuzzer for paths, parameters and virtual hosts.</p>
+        <div class="tool-card-detail" id="detail-ffuf" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install ffuf</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">ffuf -w wordlist.txt -u https://example.com/FUZZ</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Wfuzz" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-wfuzz">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🎣</span><h3 class="card-title">Wfuzz</h3></div>
+        <p class="card-desc">Flexible web application brute-forcer for forms and endpoints.</p>
+        <div class="tool-card-detail" id="detail-wfuzz" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install wfuzz</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">wfuzz -c -z file,wordlist.txt https://example.com/FUZZ</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-password-attacks">
+    <h2 class="section-title">Password Attacks</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="John the Ripper" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-john-the-ripper">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🗝️</span><h3 class="card-title">John the Ripper</h3></div>
+        <p class="card-desc">Fast offline password-hash cracker.</p>
+        <div class="tool-card-detail" id="detail-john-the-ripper" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install john</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">john --wordlist=rockyou.txt hashes.txt</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Hashcat" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-hashcat">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🔓</span><h3 class="card-title">Hashcat</h3></div>
+        <p class="card-desc">GPU-accelerated password recovery tool.</p>
+        <div class="tool-card-detail" id="detail-hashcat" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install hashcat</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">hashcat -m 0 -a 0 hashes.txt rockyou.txt</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Hydra" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-hydra">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🐍</span><h3 class="card-title">Hydra</h3></div>
+        <p class="card-desc">Fast, parallel network login brute-forcer.</p>
+        <div class="tool-card-detail" id="detail-hydra" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install hydra</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">hydra -l admin -P rockyou.txt ssh://192.168.1.10</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Medusa" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-medusa">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">⚔️</span><h3 class="card-title">Medusa</h3></div>
+        <p class="card-desc">Modular, parallel login brute-forcing tool.</p>
+        <div class="tool-card-detail" id="detail-medusa" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install medusa</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">medusa -h 192.168.1.10 -u admin -P rockyou.txt -M ssh</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="CrackMapExec" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-crackmapexec">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🗺️</span><h3 class="card-title">CrackMapExec</h3></div>
+        <p class="card-desc">Swiss-army tool for assessing and pivoting across Active Directory.</p>
+        <div class="tool-card-detail" id="detail-crackmapexec" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">pipx install crackmapexec</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">crackmapexec smb 192.168.1.0/24 -u admin -p 'Password123'</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="CeWL" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-cewl">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📚</span><h3 class="card-title">CeWL</h3></div>
+        <p class="card-desc">Builds custom wordlists by crawling a target website.</p>
+        <div class="tool-card-detail" id="detail-cewl" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install cewl</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">cewl https://example.com -m 5 -w wordlist.txt</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-wireless-attacks">
+    <h2 class="section-title">Wireless Attacks</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Aircrack-ng" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-aircrack-ng">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📡</span><h3 class="card-title">Aircrack-ng</h3></div>
+        <p class="card-desc">Suite for assessing and cracking Wi-Fi network security.</p>
+        <div class="tool-card-detail" id="detail-aircrack-ng" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install aircrack-ng</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">aircrack-ng -w rockyou.txt capture.cap</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Wifite" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-wifite">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📶</span><h3 class="card-title">Wifite</h3></div>
+        <p class="card-desc">Automates wireless auditing using the Aircrack-ng suite.</p>
+        <div class="tool-card-detail" id="detail-wifite" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install wifite</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo wifite --kill</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Kismet" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-kismet">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🛩️</span><h3 class="card-title">Kismet</h3></div>
+        <p class="card-desc">Detects and sniffs wireless networks and devices.</p>
+        <div class="tool-card-detail" id="detail-kismet" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install kismet</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo kismet -c wlan0</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Reaver" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-reaver">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📻</span><h3 class="card-title">Reaver</h3></div>
+        <p class="card-desc">Brute-forces WPS PINs to recover WPA/WPA2 passphrases.</p>
+        <div class="tool-card-detail" id="detail-reaver" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install reaver</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">reaver -i wlan0mon -b AA:BB:CC:DD:EE:FF -vv</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Fern Wifi Cracker" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-fern-wifi-cracker">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🌿</span><h3 class="card-title">Fern Wifi Cracker</h3></div>
+        <p class="card-desc">GUI tool for auditing WEP and WPA wireless security.</p>
+        <div class="tool-card-detail" id="detail-fern-wifi-cracker" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install fern-wifi-cracker</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">fern-wifi-cracker   # launch the GUI, select a wireless interface</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-exploitation">
+    <h2 class="section-title">Exploitation Tools</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Metasploit" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-metasploit">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🎯</span><h3 class="card-title">Metasploit</h3></div>
+        <p class="card-desc">Framework for developing, testing and running exploits.</p>
+        <div class="tool-card-detail" id="detail-metasploit" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install metasploit-framework</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">msfconsole -q -x "use exploit/multi/handler"</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Social-Engineer Toolkit" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-social-engineer-toolkit">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🎭</span><h3 class="card-title">Social-Engineer Toolkit</h3></div>
+        <p class="card-desc">Simulates phishing and other social-engineering attacks.</p>
+        <div class="tool-card-detail" id="detail-social-engineer-toolkit" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install set</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">setoolkit   # choose Social-Engineering Attacks from the menu</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="BeEF" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-beef">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🪝</span><h3 class="card-title">BeEF</h3></div>
+        <p class="card-desc">Browser exploitation framework for client-side testing.</p>
+        <div class="tool-card-detail" id="detail-beef" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install beef-xss</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">beef-xss   # then hook a target with the generated &lt;script&gt; tag</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="SearchSploit" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-searchsploit">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🗃️</span><h3 class="card-title">SearchSploit</h3></div>
+        <p class="card-desc">Offline search tool for the Exploit-DB vulnerability archive.</p>
+        <div class="tool-card-detail" id="detail-searchsploit" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install exploitdb</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">searchsploit apache 2.4</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Armitage" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-armitage">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🖥️</span><h3 class="card-title">Armitage</h3></div>
+        <p class="card-desc">Graphical cyber-attack management front-end for Metasploit.</p>
+        <div class="tool-card-detail" id="detail-armitage" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install armitage</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">armitage   # connect to a running msfrpcd instance</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-sniffing-spoofing">
+    <h2 class="section-title">Sniffing &amp; Spoofing</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Wireshark" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-wireshark">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🦈</span><h3 class="card-title">Wireshark</h3></div>
+        <p class="card-desc">Captures and inspects network traffic packet by packet.</p>
+        <div class="tool-card-detail" id="detail-wireshark" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install wireshark</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">wireshark   # or: tshark -i eth0</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Bettercap" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-bettercap">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📟</span><h3 class="card-title">Bettercap</h3></div>
+        <p class="card-desc">Swiss-army tool for network attacks and monitoring.</p>
+        <div class="tool-card-detail" id="detail-bettercap" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install bettercap</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo bettercap -iface eth0</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Ettercap" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-ettercap">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🐙</span><h3 class="card-title">Ettercap</h3></div>
+        <p class="card-desc">Man-in-the-middle attack suite for local networks.</p>
+        <div class="tool-card-detail" id="detail-ettercap" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install ettercap-graphical</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo ettercap -T -i eth0 -M arp:remote /// ///</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Responder" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-responder">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📨</span><h3 class="card-title">Responder</h3></div>
+        <p class="card-desc">Captures and spoofs LLMNR, NBT-NS and mDNS requests.</p>
+        <div class="tool-card-detail" id="detail-responder" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install responder</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo responder -I eth0 -wrf</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Tcpdump" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-tcpdump">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📼</span><h3 class="card-title">Tcpdump</h3></div>
+        <p class="card-desc">Lightweight command-line packet capture and analysis.</p>
+        <div class="tool-card-detail" id="detail-tcpdump" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install tcpdump</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo tcpdump -i eth0 -w capture.pcap</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Macchanger" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-macchanger">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧢</span><h3 class="card-title">Macchanger</h3></div>
+        <p class="card-desc">Spoofs and randomizes a network interface's MAC address.</p>
+        <div class="tool-card-detail" id="detail-macchanger" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install macchanger</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sudo macchanger -r eth0</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-forensics-reporting">
+    <h2 class="section-title">Forensics &amp; Reporting</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Autopsy" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-autopsy">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🔬</span><h3 class="card-title">Autopsy</h3></div>
+        <p class="card-desc">Digital forensics platform for analyzing disk images.</p>
+        <div class="tool-card-detail" id="detail-autopsy" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install autopsy</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">autopsy   # opens the web UI at http://localhost:9999</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Volatility" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-volatility">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧠</span><h3 class="card-title">Volatility</h3></div>
+        <p class="card-desc">Memory-forensics framework for analyzing RAM captures.</p>
+        <div class="tool-card-detail" id="detail-volatility" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install volatility3</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">vol -f memory.dmp windows.pslist</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Dradis" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-dradis">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📋</span><h3 class="card-title">Dradis</h3></div>
+        <p class="card-desc">Collaboration platform for organizing penetration-test reports.</p>
+        <div class="tool-card-detail" id="detail-dradis" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install dradis</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">dradis   # launch the web UI to start a new project</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Binwalk" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-binwalk">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🧱</span><h3 class="card-title">Binwalk</h3></div>
+        <p class="card-desc">Analyzes and extracts data embedded in firmware images.</p>
+        <div class="tool-card-detail" id="detail-binwalk" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install binwalk</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">binwalk -e firmware.bin</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="ExifTool" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-exiftool">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🖼️</span><h3 class="card-title">ExifTool</h3></div>
+        <p class="card-desc">Reads, writes and strips metadata from images and documents.</p>
+        <div class="tool-card-detail" id="detail-exiftool" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install libimage-exiftool-perl</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">exiftool photo.jpg</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-database-assessment">
+    <h2 class="section-title">Database Assessment</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="jSQL Injection" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-jsql-injection">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">💾</span><h3 class="card-title">jSQL Injection</h3></div>
+        <p class="card-desc">Java-based automated SQL injection tool with a graphical UI.</p>
+        <div class="tool-card-detail" id="detail-jsql-injection" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install jsql-injection</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">jsql-injection   # launch the GUI, enter the target URL</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="BBQSQL" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-bbqsql">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🍖</span><h3 class="card-title">BBQSQL</h3></div>
+        <p class="card-desc">Blind SQL injection framework for tricky, semi-automated cases.</p>
+        <div class="tool-card-detail" id="detail-bbqsql" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install bbqsql</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">bbqsql --query-file query.yaml</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="SQLninja" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-sqlninja">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🥷</span><h3 class="card-title">SQLninja</h3></div>
+        <p class="card-desc">Exploits SQL injection vulnerabilities in Microsoft SQL Server.</p>
+        <div class="tool-card-detail" id="detail-sqlninja" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install sqlninja</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">sqlninja -m test -f sqlninja.conf</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tool-category" id="cat-reverse-engineering">
+    <h2 class="section-title">Reverse Engineering</h2>
+    <div class="grid tool-grid">
+      <article class="card tool-card" data-name="Ghidra" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-ghidra">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🏛️</span><h3 class="card-title">Ghidra</h3></div>
+        <p class="card-desc">NSA-built suite for disassembling and decompiling binaries.</p>
+        <div class="tool-card-detail" id="detail-ghidra" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install ghidra</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">ghidraRun   # then File → Import File to load a binary</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Radare2" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-radare2">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">🔧</span><h3 class="card-title">Radare2</h3></div>
+        <p class="card-desc">Command-line framework for reverse engineering and binary analysis.</p>
+        <div class="tool-card-detail" id="detail-radare2" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install radare2</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">r2 -A ./binary</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="apktool" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-apktool">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📦</span><h3 class="card-title">apktool</h3></div>
+        <p class="card-desc">Decodes and rebuilds Android APK files for inspection.</p>
+        <div class="tool-card-detail" id="detail-apktool" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install apktool</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">apktool d app.apk</code>
+          </div>
+        </div>
+      </article>
+      <article class="card tool-card" data-name="Jadx" role="button" tabindex="0" aria-expanded="false" aria-controls="detail-jadx">
+        <div class="tool-card-head"><span class="tool-emoji" aria-hidden="true">📱</span><h3 class="card-title">Jadx</h3></div>
+        <p class="card-desc">Decompiles Android DEX/APK files back into readable Java.</p>
+        <div class="tool-card-detail" id="detail-jadx" hidden>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Install</span>
+            <code class="tool-detail-value">sudo apt install jadx</code>
+          </div>
+          <div class="tool-detail-row">
+            <span class="tool-detail-label">Usage</span>
+            <code class="tool-detail-value">jadx -d output/ app.apk</code>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="kalitools-notice">
+      <p><strong>Disclaimer:</strong> This directory is provided for educational and authorized-testing purposes only. Sherlock is not responsible for any misuse of these tools. Using them against systems or networks you do not own, or do not have explicit written permission to test, is illegal. Read the full <a href="disclaimer.html">disclaimer</a> for details.</p>
+    </div>
+  </div>
+  <div class="footer-inner">
+    <p class="footer-copy">&copy; <span id="year">2026</span> Sherlock. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js" type="module"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "name": "Sherlock",
   "short_name": "Sherlock",
-  "description": "Sherlock: cyber security student focused on embedded systems.",
+  "description": "Sherlock web site . your portal to cybersecurity world",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050608",

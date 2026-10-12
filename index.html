@@ -25,7 +25,7 @@
 </script>
 <meta name="theme-color" content="#050608">
 <link rel="icon" href="data:,">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; form-action 'self' https://api.web3forms.com; connect-src 'self' https://api.web3forms.com https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://release-assets.githubusercontent.com https://raw.githubusercontent.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self' https://api.web3forms.com; connect-src 'self' https://api.web3forms.com https://*.workers.dev https://api.github.com https://github.com https://objects.githubusercontent.com https://release-assets.githubusercontent.com https://raw.githubusercontent.com">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script src="assets/js/theme-init.js"></script>
 </head>
@@ -123,21 +123,7 @@
     <div class="grid">
       <article class="card">
         <div class="card-title-row">
-          <h3 class="card-title" style="
-              font-family: 'Inter', system-ui, -apple-system, sans-serif;
-              font-size: 1.25rem;
-              font-weight: 700;
-              background: linear-gradient(135deg, #ffffff 30%, #d4af37 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              padding: 8px 14px;
-              background-color: #121212;
-              border-left: 4px solid #d4af37;
-              border-radius: 8px;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-              display: inline-block;
-              letter-spacing: 0.5px;
-          ">01. Sx Changer</h3>
+          <h3 class="card-title">01. Sx Changer</h3>
         </div>
         <p class="card-desc">Sx Changer is an application that gives you the ability to change your location on Ios/Android <span class="card-soon">Coming out soon</span></p>
         <span class="card-status">In progress</span>
@@ -431,7 +417,7 @@
         <p class="card-desc">Details coming soon.</p>
         <p class="showcase-help">You have troubles to understand? <a href="#contact">Contact me</a></p>
       </article>
-      <article class="card showcase-detail" id="showcase-detail-10" aria-labelledby="showcase-detail-title-10" hidden>
+      <article class="card showcase-view showcase-detail" id="showcase-detail-10" aria-labelledby="showcase-detail-title-10" hidden>
         <a class="showcase-back" href="#showcase">&larr; Back to Showcase</a>
         <h3 class="card-title" id="showcase-detail-title-10" tabindex="-1">Project 10</h3>
         <h4 class="detail-heading">How it's working</h4>
@@ -442,30 +428,112 @@
         <p class="card-desc">Details coming soon.</p>
         <p class="showcase-help">You have troubles to understand? <a href="#contact">Contact me</a></p>
       </article>
+      <article class="card showcase-view showcase-tutorial" id="showcase-tutorial-1" aria-labelledby="showcase-tutorial-title-1" hidden>
+        <a class="showcase-back" href="#showcase/1">&larr; Back to Details</a>
+        <h3 class="card-title" id="showcase-tutorial-title-1" tabindex="-1">Project 01 Tutorial</h3>
+        <p class="card-desc tutorial-lead">Connect an ESP32-D board to an NRF24L01 + PA + LNA radio module with seven jumper wires. Follow the steps in order, with the power unplugged until the last step.</p>
+
+        <h4 class="detail-heading">What you need</h4>
+        <ul class="tutorial-list">
+          <li>1 ESP32-D development board</li>
+          <li>1 NRF24L01 + PA + LNA module with its antenna</li>
+          <li>7 female-to-female jumper wires</li>
+          <li>1 micro-USB cable</li>
+        </ul>
+
+        <div class="tutorial-step">
+          <figure class="tutorial-figure">
+            <img src="Images/Nrftuto.jpg" alt="Pinout of the NRF24L01 + PA + LNA module: GND, VCC, CE, CSN, SCK, MOSI and MISO on the 2 by 4 header, antenna on the right" width="624" height="688" loading="lazy">
+            <figcaption>NRF24L01 + PA + LNA pinout</figcaption>
+          </figure>
+          <div class="tutorial-text">
+            <h4 class="detail-heading">Step 1. Prepare the NRF module</h4>
+            <ol class="tutorial-list">
+              <li>Screw the antenna onto the gold SMA connector first. Never power the module without its antenna.</li>
+              <li>Hold the module like the picture, with the antenna on the right and the 2 by 4 pin header on the left.</li>
+              <li>Find the seven pins you will use: GND, VCC, CE, CSN, SCK, MOSI and MISO. The last pin (IRQ) stays unconnected.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tutorial-step">
+          <figure class="tutorial-figure">
+            <img src="Images/ESP32D.jpeg" alt="ESP32-D board with colored wires on 3V3, GND, GPIO 12, 13, 14, 15 and 16" width="894" height="1200" loading="lazy">
+            <figcaption>ESP32-D wiring, wire colors match the table</figcaption>
+          </figure>
+          <div class="tutorial-text">
+            <h4 class="detail-heading">Step 2. Wire the module to the ESP32</h4>
+            <p class="card-desc">Push one jumper wire onto each NRF pin, then connect the other end to the ESP32 pin in the same row of this table. The wire colors are the ones used in both pictures.</p>
+            <div class="table-scroll">
+              <table class="wiring-table">
+                <thead><tr><th scope="col">NRF pin</th><th scope="col">Wire</th><th scope="col">ESP32 pin</th></tr></thead>
+                <tbody>
+              <tr><td>VCC</td><td><span class="swatch swatch-red"></span>Red</td><td>3V3</td></tr>
+              <tr><td>GND</td><td><span class="swatch swatch-black"></span>Black</td><td>GND</td></tr>
+              <tr><td>CE</td><td><span class="swatch swatch-yellow"></span>Yellow</td><td>GPIO 16</td></tr>
+              <tr><td>CSN</td><td><span class="swatch swatch-green"></span>Green</td><td>GPIO 15</td></tr>
+              <tr><td>SCK</td><td><span class="swatch swatch-gray"></span>Gray</td><td>GPIO 14</td></tr>
+              <tr><td>MOSI</td><td><span class="swatch swatch-blue"></span>Blue</td><td>GPIO 13</td></tr>
+              <tr><td>MISO</td><td><span class="swatch swatch-orange"></span>Orange</td><td>GPIO 12</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <ol class="tutorial-list tutorial-list-after">
+              <li>Power first: red wire from VCC to 3V3, black wire from GND to GND. Use 3V3 only, never 5V.</li>
+              <li>SPI lines next: SCK to GPIO 14, MISO to GPIO 12, MOSI to GPIO 13.</li>
+              <li>Control lines last: CE to GPIO 16 and CSN to GPIO 15.</li>
+            </ol>
+          </div>
+        </div>
+
+        <h4 class="detail-heading">Step 3. Check and power on</h4>
+        <ol class="tutorial-list">
+          <li>Compare every wire with the table and the ESP32 picture. A swapped pair is the most common reason a module does not respond.</li>
+          <li>Make sure the antenna is tight and no bare metal pins touch each other.</li>
+          <li>Plug the micro-USB cable into the ESP32 last.</li>
+          <li>If the board resets when the module transmits, add a 10 &micro;F capacitor between the module's VCC and GND pins, as close to the module as you can. The PA + LNA version draws more current than a basic NRF24L01.</li>
+        </ol>
+
+        <p class="showcase-help">You have troubles to understand? <a href="#contact">Contact me</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-intro">Open to collaboration, consulting, and interesting conversations.</p>
+    <div class="contact-links">
+      <a class="btn contact-btn contact-discord" href="https://discord.gg/vDPz2Tq4u5" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>Sx Community
+      </a>
+      <a class="btn contact-btn contact-discord" href="https://discord.gg/xExgKRD6sB" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>LxveLabs Community
+      </a>
+      <a class="btn contact-btn contact-github" href="https://github.com/shxerlock" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>GitHub
+      </a>
+      <a class="btn contact-btn contact-email" href="mailto:shxerlock@proton.me">
+        <svg class="icon" aria-hidden="true"><use href="#i-envelope"></use></svg>shxerlock@proton.me
+      </a>
+      <a class="btn contact-btn contact-instagram" href="https://www.instagram.com/linuxsocials?stkn=Zjl4aHJkdjEwZzcx" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>Instagram
+      </a>
     </div>
   </section>
 
 </div>
 </main>
 
-<footer class="footer" id="footer">
+<footer id="siteFooter">
   <div class="footer-inner">
-    <p>&copy; 2026 Sherlock. All rights reserved.</p>
-    <div class="social-links">
-      <a href="https://github.com/shxerlock" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg>
-      </a>
-      <a href="https://discord.com" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-        <svg class="icon" aria-hidden="true"><use href="#i-discord"></use></svg>
-      </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
-      </a>
+    <p class="footer-copy">&copy; <span id="year">2026</span> Sherlock. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="disclaimer.html" id="footerDisclaimerLink">Disclaimer</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
     </div>
   </div>
-  <p class="disclaimer" id="footerDisclaimerLink">Disclaimer: Educational use only.</p>
 </footer>
-
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js" type="module"></script>
 </body>
 </html>

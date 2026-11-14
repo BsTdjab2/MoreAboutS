@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideas | Sherlock</title>
+<meta name="description" content="A private-to-the-homepage ideas board showing Sherlock's completed projects and upcoming tool concepts.">
+<link rel="canonical" href="https://sherlocknots.github.io/ideas.html">
+<meta name="theme-color" content="#06070a">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'; connect-src 'self'">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/theme-init.js"></script>
+</head>
+<body id="top">
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8.5 14.5A6.5 6.5 0 1 1 15.5 14.5c-.9.8-1.4 1.7-1.5 3h-4c-.1-1.3-.6-2.2-1.5-3z"/><path d="M12 5v1M6.5 7.5l.7.7M17.5 7.5l-.7.7"/></symbol>
+</svg>
+
+<progress class="scroll-progress" id="scrollProgress" max="100" value="0" aria-hidden="true"></progress>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="site-nav" id="siteNav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="brand" href="index.html#about"><span class="brand-mark" aria-hidden="true"></span>Sherlock</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Projects</a>
+      <a class="nav-downloads" href="downloads.html"><svg class="icon icon-stroke" aria-hidden="true"><use href="#i-download"></use></svg>Downloads</a>
+      <a href="flasher.html">Flasher</a>
+      <a href="kali-tools.html">Kali Tools</a>
+      <a class="nav-ideas" href="ideas.html" aria-current="page"><svg class="icon icon-stroke" aria-hidden="true"><use href="#i-lightbulb"></use></svg>Ideas</a>
+      <a href="index.html#showcase">Showcase</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Switch to light mode">
+        <svg class="icon icon-stroke ti-sun" aria-hidden="true"><use href="#i-sun"></use></svg><svg class="icon icon-stroke ti-moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+      </button>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <svg class="icon icon-stroke ti-menu" aria-hidden="true"><use href="#i-menu"></use></svg><svg class="icon icon-stroke ti-close" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"><span class="hero-aurora a1"></span><span class="hero-grid"></span></div>
+  <div class="hero-inner wrap">
+    <h1>Ideas</h1>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <section class="section ideas-section" id="ideas">
+    <h2 class="section-title">The Idea Board</h2>
+    <p class="section-intro">A place to keep track of projects, experiments, and tools I want to build. Completed projects are marked in green; future concepts are still being planned.</p>
+
+    <div class="ideas-grid">
+      <article class="card idea-card">
+        <div class="idea-card-top">
+          <span class="idea-index">01 / PROJECT</span>
+          <span class="idea-status is-complete"><span class="idea-status-dot" aria-hidden="true"></span>Completed</span>
+        </div>
+        <h3 class="card-title">Minecraft Cheat Client</h3>
+        <p class="card-desc">The Minecraft client project is already completed. This entry keeps it on the board as a finished project.</p>
+      </article>
+
+      <article class="card idea-card">
+        <div class="idea-card-top">
+          <span class="idea-index">02 / PROJECT</span>
+          <span class="idea-status is-complete"><span class="idea-status-dot" aria-hidden="true"></span>Completed</span>
+        </div>
+        <h3 class="card-title">Minecraft Auto Clicker</h3>
+        <p class="card-desc">The Minecraft auto clicker is already completed and available from the website's Downloads page.</p>
+        <div class="idea-card-actions"><a href="downloads.html#mc-auto-clicker">View download page &rarr;</a></div>
+      </article>
+
+      <article class="card idea-card">
+        <div class="idea-card-top">
+          <span class="idea-index">03 / CONCEPT</span>
+          <span class="idea-status"><span class="idea-status-dot" aria-hidden="true"></span>Planned idea</span>
+        </div>
+        <h3 class="card-title">Account Security Guard</h3>
+        <p class="card-desc">A defensive tool concept that helps protect an account or email when suspicious access is detected. It could alert the owner, help review and revoke unknown sessions where supported, and guide the owner through official password and recovery-contact updates. Sensitive changes should remain under the account owner's control.</p>
+      </article>
+
+      <article class="card idea-card">
+        <div class="idea-card-top">
+          <span class="idea-index">04 / CONCEPT</span>
+          <span class="idea-status"><span class="idea-status-dot" aria-hidden="true"></span>Planned idea</span>
+        </div>
+        <h3 class="card-title">Instagram Ad Filter</h3>
+        <p class="card-desc">A tool concept to reduce repetitive and unwanted Instagram advertisements by helping identify and hide promoted content where platform and browser capabilities allow. Its technical feasibility and compatibility with Instagram's rules would need to be checked before development.</p>
+      </article>
+    </div>
+
+    <p class="ideas-note">This page is a project tracker, not a promise that every planned concept is already working. Ideas may change as they are researched and developed.</p>
+  </section>
+</div>
+</main>
+
+<footer id="siteFooter">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand-col">
+        <a class="footer-brand" href="index.html#about"><span class="brand-mark" aria-hidden="true"></span>Sherlock</a>
+        <p class="footer-blurb">Sherlock Web Site . Your portal to cybersecurity world</p>
+      </div>
+      <nav class="footer-col" aria-label="Footer">
+        <p class="footer-heading">Navigate</p>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#work">Projects</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="flasher.html">Flasher</a></li>
+          <li><a href="kali-tools.html">Kali Tools</a></li>
+          <li><a href="ideas.html" aria-current="page">Ideas</a></li>
+          <li><a href="index.html#showcase">Showcase</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-heading">Links</p>
+        <ul>
+          <li><a href="https://justcallmekoko.github.io/MarauderInstaller/" target="_blank" rel="noopener noreferrer">Marauder</a></li>
+          <li><a href="https://bruce.computer/" target="_blank" rel="noopener noreferrer">Bruce</a></li>
+          <li><a href="https://esp32marauder.com/" target="_blank" rel="noopener noreferrer">ESP32 Marauder</a></li>
+          <li><a href="https://cybercontroller.org/" target="_blank" rel="noopener noreferrer">Cyber Controller</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-heading">Connect</p>
+        <ul>
+          <li><a href="https://discord.gg/vDPz2Tq4u5" target="_blank" rel="noopener noreferrer">Sx Community</a></li>
+          <li><a href="https://discord.gg/xExgKRD6sB" target="_blank" rel="noopener noreferrer">LxveLabs Community</a></li>
+          <li><a href="https://github.com/shxerlock" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="mailto:shxerlock@proton.me">shxerlock@proton.me</a></li>
+          <li><a href="https://www.instagram.com/linuxsocials?stkn=Zjl4aHJkdjEwZzcx" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; <span id="year">2026</span> Sherlock. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="disclaimer.html">Disclaimer</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <a class="to-top" href="#top">Back to top<svg class="icon icon-stroke" aria-hidden="true"><use href="#i-arrow-up"></use></svg></a>
+    </div>
+  </div>
+  <p class="footer-mark" aria-hidden="true">Sherlock</p>
+</footer>
+<script src="assets/js/main.js" type="module"></script>
+</body>
+</html>
